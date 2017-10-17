@@ -2,7 +2,7 @@
 
 * [mount](./mount.md)
 * [shallow](./shallow.md)
-* [Mounting Options](./options.md)
+* [Options de montage](./options.md)
   - [context](./options.md#context)
   - [slots](./options.md#slots)
   - [stubs](./options.md#stubs)
@@ -46,4 +46,4 @@
   * [setProps](./wrapper-array/setProps.md)
   * [trigger](./wrapper-array/trigger.md)
 * [createLocalVue](./createLocalVue.md)
-* [Selectors](./selectors.md)
+* [Selecteurs](./selectors.md)

@@ -1,9 +1,9 @@
 # Guides
 
-* [Getting Started](./getting-started.md)
-* [Common Tips](./common-tips.md)
-* [Choosing a test runner](./choosing-a-test-runner.md)
-* [Using with Jest](./using-with-jest.md)
-* [Testing SFCs with Jest](./testing-SFCs-with-jest.md)
-* [Testing SFCs with Mocha + webpack](./testing-SFCs-with-mocha-webpack.md)
-* [Using with Vuex](./using-with-vuex.md)
+* [Commencer](./getting-started.md)
+* [Astuces](./common-tips.md)
+* [Choisir un lanceur de tests](./choosing-a-test-runner.md)
+* [Utiliser avec Jest](./using-with-jest.md)
+* [Tester des composants monofichiers avec Jest](./testing-SFCs-with-jest.md)
+* [Tester des composants monofichiers avec Mocha et webpack](./testing-SFCs-with-mocha-webpack.md)
+* [Utiliser avec Vuex](./using-with-vuex.md)

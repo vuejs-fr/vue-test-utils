@@ -1,20 +1,20 @@
 # vue-test-utils
 
-`vue-test-utils` is the official unit testing utility library for Vue.js.
+`vue-test-utils` est la bibliothèque officielle de tests unitaires pour Vue.js.
 
 * [Guides](guides/README.md)
-  * [Getting Started](guides/getting-started.md)
-  * [Common Tips](guides/common-tips.md)
-  * [Choosing a test runner](guides/choosing-a-test-runner.md)
-  * [Testing SFCs with Jest](guides/testing-SFCs-with-jest.md)
-  * [Testing SFCs with Mocha + webpack](guides/testing-SFCs-with-mocha-webpack.md)
-  * [Using with Vue Router](guides/using-with-vue-router.md)
-  * [Using with Vuex](guides/using-with-vuex.md)
+  * [Commencer](guides/getting-started.md)
+  * [Astuces](guides/common-tips.md)
+  * [Choisir un lanceur de tests](guides/choosing-a-test-runner.md)
+  * [Tester des composants monofichiers avec Jest](guides/testing-SFCs-with-jest.md)
+  * [Tester des composants monofichiers avec Mocha et webpack](guides/testing-SFCs-with-mocha-webpack.md)
+  * [Utiliser avec Vue Router](guides/using-with-vue-router.md)
+  * [Utiliser avec Vuex](guides/using-with-vuex.md)
 * [API](api/README.md)
   * [createLocalVue](api/createLocalVue.md)
   * [mount](api/mount.md)
   * [shallow](api/shallow.md)
-  * [Mounting Options](api/options.md)
+  * [Options de montage](api/options.md)
   * [Wrapper](api/wrapper/README.md)
     * [contains](api/wrapper/contains.md)
     * [find](api/wrapper/find.md)
@@ -46,4 +46,4 @@
     * [setData](api/wrapper-array/setData.md)
     * [setProps](api/wrapper-array/setProps.md)
     * [trigger](api/wrapper-array/trigger.md)
-  * [Selectors](api/selectors.md)
+  * [Selecteurs](api/selectors.md)
