@@ -1,22 +1,22 @@
-# Testing Single File Components with Mocha + webpack
+# Tester des composants monofichiers avec Mocha + webpack
 
-> An example project for this setup is available on [GitHub](https://github.com/vuejs/vue-test-utils-mocha-webpack-example).
+> Un exemple de projet pour cette installation est disponible sur [GitHub](https://github.com/vuejs/vue-test-utils-mocha-webpack-example).
 
-Another strategy for testing SFCs is compiling all our tests via webpack and then run it in a test runner. The advantage of this approach is that it gives us full support for all webpack and `vue-loader` features, so we don't have to make compromises in our source code.
+Une des stratégies pour tester des composants monofichiers est de compiler tous nos tests via webpack puis de les passer dans un lanceur de tests. L'avantage de cette approche est qu'elle procure un support complet pour les fonctionnalités de webpack et de `vue-loader`, et ce, afin de ne pas réaliser de compromis dans notre code.
 
-You can technically use any test runner you like and manually wire things together, but we've found [`mocha-webpack`](https://github.com/zinserjan/mocha-webpack) to provide a very streamlined experience for this particular task.
+Techniquement, vous pouvez utiliser n'importe quel lanceur de tests et relier le tout manuellement. Cependant, nous avons trouvé [`mocha-webpack`](https://github.com/zinserjan/mocha-webpack) qui procure une expérience très simplifiée pour cette tâche particulière.
 
-## Setting Up `mocha-webpack`
+## Mettre en place `mocha-webpack`
 
-We will assume you are starting with a setup that already has webpack, vue-loader and Babel properly configured - e.g. the `webpack-simple` template scaffolded by `vue-cli`.
+On va supposer que vous commencez avec une installation qui a déjà webpack, vue-loader et Babel correctement configurés (cf. le template `webpack-simple` via `vue-cli`).
 
-The first thing to do is installing test dependencies:
+La première chose à faire est d'installer les dépendances de tests :
 
 ``` bash
 npm install --save-dev vue-test-utils mocha mocha-webpack
 ```
 
-Next we need to define a test script in our `package.json`.
+Ensuite, on doit définir un script test dans notre `package.json`.
 
 ```json
 // package.json
@@ -27,19 +27,19 @@ Next we need to define a test script in our `package.json`.
 }
 ```
 
-A few things to note here:
+Quelques éléments importants à noter :
 
-- The `--webpack-config` flag specifies the webpack config file to use for the tests. In most cases, this would be identical to the config you use for the actual project with one small tweak. We will talk about this later.
+- Le paramètre `--webpack-config` indique le fichier de configuration webpack à utiliser pour les tests. Dans la plupart des cas, c'est identique à la configuration du projet actuel avec une petite modification. On en reparlera plus tard.
 
-- The `--require` flag ensures the file `test/setup.js` is run before any tests, in which we can setup the global environment for our tests to be run in.
+- Le paramètre `--require` permet de s'assurer que le fichier `test/setup.js` est bien exécuté avant les tests. Dans celui-ci, on met en place l'environnement où nos tests vont être exécutés.
 
-- The final argument is a glob for the test files to be included in the test bundle.
+- Le dernier paramètre est un glob pour indiquer les fichiers de tests à inclure dans le paquetage.
 
-### Extra webpack Configuration
+### Configuration supplémentaire pour webpack
 
-#### Externalizing NPM Dependencies
+#### Externaliser les dépendances npm
 
-In our tests we will likely import a number of NPM dependencies - some of these modules may be written without browser usage in mind and simply cannot be bundled properly by webpack. Another consideration is externalizing dependencies greatly improves test boot up speed. We can externalize all NPM dependencies with `webpack-node-externals`:
+Dans nos tests, nous allons surement importer un nombre conséquent de dépendances npm, certaines d'entre elles n'ont pas été conçues pour une utilisation dans un navigateur et ne peuvent être empaquetées par webpack. Il faut aussi considérer qu'externaliser les dépendances augmente énormément la vitesse de lancement des tests. On peut externaliser toutes les dépendances npm avec `webpack-node-externals -externals` :
 
 ```js
 // webpack.config.js
@@ -51,9 +51,9 @@ module.exports = {
 }
 ```
 
-#### Source Maps
+#### Coordinateur de sources
 
-Source maps need to be inlined to be picked up by `mocha-webpack`. The recommended config is:
+La coordinateur de sources (« Source maps ») doit être indiquée pour être utilisé par `mocha-webpack`. La configuration recommandée est la suivante :
 
 ``` js
 module.exports = {
@@ -62,49 +62,49 @@ module.exports = {
 }
 ```
 
-If debugging via IDE, it's also recommended to add the following:
+Si vous déboguez via votre IDE, il est recommandé d'ajouter la configuration suivante :
 
 ``` js
 module.exports = {
   // ...
   output: {
     // ...
-    // use absolute paths in sourcemaps (important for debugging via IDE)
+    // utiliser des chemins absolus (c'est important si vous déboguez avec un IDE)
     devtoolModuleFilenameTemplate: '[absolute-resource-path]',
     devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
   }
 }
 ```
 
-### Setting Up Browser Environment
+### Mettre en place l'environnement du navigateur
 
-`vue-test-utils` requires a browser environment to run. We can simulate it in Node.js using `jsdom-global`:
+`vue-test-utils` requiert en environnement de navigateur pour fonctionner. On peut le simuler avec Node.js en utilisant `jsdom-global` :
 
 ```bash
 npm install --save-dev jsdom jsdom-global
 ```
 
-Then in `test/setup.js`:
+Puis dans `test/setup.js`:
 
 ``` js
 require('jsdom-global')()
 ```
 
-This adds a browser environment to node, so that `vue-test-utils` can run correctly.
+Cela ajoute un environnement de navigateur dans Node.js afin que `vue-test-utils` fonctionne correctement. 
 
-### Picking an Assertion Library
+### Choisir une bibliothèque d'assertions
 
-[Chai](http://chaijs.com/) is a popular assertion library that is commonly used alongside Mocha. You may also want to check out [Sinon](http://sinonjs.org/) for creating spies and stubs.
+[Chai](http://chaijs.com/) est une bibliothèque populaire qui est généralement utilisée avec Mocha. Vous pouvez aussi jeter un coup d'œil à [Sinon](http://sinonjs.org/) pour créer des espions et des fonctions avec un comportement pré-programmé (« stubs »).
 
-Alternatively you can use `expect` which is now part of Jest, and exposes [the exact same API](http://facebook.github.io/jest/docs/en/expect.html#content) in Jest docs.
+Vous pouvez utiliser, alternativement, `expect` qui fait maintenant partie de Jest et expose [la même API](http://facebook.github.io/jest/docs/en/expect.html#content) dans la documentation de Jest.
 
-We will be using `expect` here and make it globally available so that we don't have to import it in every test:
+On va utiliser `expect` et le rendre globalement accessible afin de ne pas avoir à l'importer pour chaque test :
 
 ``` bash
 npm install --save-dev expect
 ```
 
-Then in `test/setup.js`:
+Puis dans `test/setup.js`:
 
 ``` js
 require('jsdom-global')()
@@ -112,21 +112,21 @@ require('jsdom-global')()
 global.expect = require('expect')
 ```
 
-### Optimizing Babel for Tests
+### Optimiser Babel pour les tests
 
-Notice that we are using `babel-loader` to handle JavaScript. You should already have Babel configured if you are using it in your app via a `.babelrc` file. Here `babel-loader` will automatically use the same config file.
+Notez que nous utilisons `babel-loader` pour gérer JavaScript. Vous devriez déjà avoir Babel de configuré si vous l'utilisez dans votre application via un fichier `.babelrc`. Ici `babel-loader` va automatiquement utiliser le même fichier de configuration.
 
-One thing to note is that if you are using Node 6+, which already supports the majority of ES2015 features, you can configure a separate Babel [env option](https://babeljs.io/docs/usage/babelrc/#env-option) that only transpiles features that are not already supported in the Node version you are using (e.g. `stage-2` or flow syntax support, etc.)
+Une autre chose à noter est que si vous utilisez une version de Node.js 6+, qui supporte déjà une majorité des fonctionnalités d'ES2015, vous pouvez configurer séparément un autre Babel [env option](https://babeljs.io/docs/usage/babelrc/#env-option) qui va uniquement transpiler les fonctionnalités non supportées dans la version de Node.js que vous utilisez (c.-à-d. stage-2 ou le support de la syntaxe flow, etc.).
 
-### Adding a test
+### Ajouter un test
 
-Create a file in `src` named `Counter.vue`:
+Créez dans le dossier `src` un fichier nommé `Counter.vue`:
 
 ``` html
 <template>
 	<div>
-	  {{ count }}
-	  <button @click="increment">Increment</button>
+	  {{ counter }}
+	  <button @click="increment">Incrementer</button>
 	</div>
 </template>
 
@@ -134,27 +134,27 @@ Create a file in `src` named `Counter.vue`:
 export default {
   data () {
     return {
-      count: 0
+      counter: 0
     }
   },
 
   methods: {
     increment () {
-      this.count++
+      this.counter++
     }
   }
 }
 </script>
 ```
 
-And create a test file named `test/Counter.spec.js` with the following code:
+Puis créez un test nommé `test/Counter.spec.js` avec le code suivant :
 
 ```js
 import { shallow } from 'vue-test-utils'
 import Counter from '../src/Counter.vue'
 
 describe('Counter.vue', () => {
-  it('increments count when button is clicked', () => {
+  it('incrémente le compteur quand le bouton est cliqué', () => {
     const wrapper = shallow(Counter)
     wrapper.find('button').trigger('click')
     expect(wrapper.find('div').text()).toMatch('1')
@@ -162,17 +162,17 @@ describe('Counter.vue', () => {
 })
 ```
 
-And now we can run the test:
+Et maintenant on peut lancer le test avec :
 
 ```
 npm run unit
 ```
 
-Woohoo, we got our tests running!
+Woohoo, nos tests fonctionnent !
 
-### Resources
+### Ressources
 
-- [Example project for this setup](https://github.com/vuejs/vue-test-utils-mocha-webpack-example)
+- [Projet exemple pour cette installation](https://github.com/vuejs/vue-test-utils-mocha-webpack-example)
 - [Mocha](https://mochajs.org/)
 - [mocha-webpack](http://zinserjan.github.io/mocha-webpack/)
 - [Chai](http://chaijs.com/)
