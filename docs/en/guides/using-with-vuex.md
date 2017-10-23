@@ -1,12 +1,12 @@
-# Using with Vuex
+# Utiliser avec Vuex
 
-In this guide, we'll see how to test Vuex in components with `vue-test-utils`.
+Dans ce guide, nous allons voir comment tester Vuex dans des composants grâce à `vue-test-utils`.
 
-## Mocking Actions
+## Simuler des actions
 
-Let’s look at some code.
+Regardons un peu de code !
 
-This is the component we want to test. It calls Vuex actions.
+Ci-dessous, le composant que nous voulons tester. Il fait appel à des actions Vuex.
 
 ``` html
 <template>
@@ -35,13 +35,13 @@ export default{
 </script>
 ```
 
-For the purposes of this test, we don’t care what the actions do, or what the store looks like. We just need to know that these actions are being fired when they should, and that they are fired with the expected value.
+Pour les objectifs de ce test, on se fiche de ce que les actions font, ou à ce quoi le store ressemble. On doit juste savoir si ces actions sont lancées lorsqu'elles sont supposées l'être, et ce, avec les valeurs attendues.
 
-To test this, we need to pass a mock store to Vue when we shallow our component.
+Pour tester cela, on doit passer un store fictif à Vue lorsque l'on isole notre composant.
 
-Instead of passing the store to the base Vue constructor, we can pass it to a - [localVue](../api/options.md#localvue). A localVue is a scoped Vue constructor that we can make changes to without affecting the global Vue constructor.
+Au lieu de passer le store au constructeur de base de Vue, on peut le passer à - [`localVue`](../api/options.md#localvue). Un `localVue` est un constructeur à portée limitée de Vue sur lequel on peut effectuer des changements sans avoir à affecter le constructeur global.
 
-Let’s see what this looks like:
+Voyons à quoi cela ressemble :
 
 ``` js
 import { shallow, createLocalVue } from 'vue-test-utils'
@@ -67,7 +67,7 @@ describe('Actions.vue', () => {
     })
   })
 
-  it('calls store action actionInput when input value is input and an input event is fired', () => {
+  it("appelle l'action `actionInput` du store quand la valeur du champ est `input` et qu'un évènement `input` est lancé", () => {
     const wrapper = shallow(Actions, { store, localVue })
     const input = wrapper.find('input')
     input.element.value = 'input'
@@ -75,7 +75,7 @@ describe('Actions.vue', () => {
     expect(actions.actionInput).toHaveBeenCalled()
   })
 
-  it('does not call store action actionInput when input value is not input and an input event is fired', () => {
+  it("n'appelle pas l'action `actionInput` du store quand la valeur du champ n'est pas `input` et qu'un évènement `input` est lancé", () => {
     const wrapper = shallow(Actions, { store, localVue })
     const input = wrapper.find('input')
     input.element.value = 'not input'
@@ -83,7 +83,7 @@ describe('Actions.vue', () => {
     expect(actions.actionInput).not.toHaveBeenCalled()
   })
 
-  it('calls store action actionClick when button is clicked', () => {
+  it("appelle l'action `actionClick` quand le bouton est cliqué", () => {
     const wrapper = shallow(Actions, { store, localVue })
     wrapper.find('button').trigger('click')
     expect(actions.actionClick).toHaveBeenCalled()
@@ -91,23 +91,23 @@ describe('Actions.vue', () => {
 })
 ```
 
-What’s happening here? First we tell Vue to use Vuex with the `Vue.use` method. This is just a wrapper around `Vue.use`.
+Que se passe-t-il ici ? Premièrement, on indique à Vue d'utiliser Vuex avec la méthode `use`. C'est tout simplement une surcouche de `Vue.use`.
 
-We then make a mock store by calling new `Vuex.store` with our mock values. We only pass it the actions, since that’s all we care about.
+On va ensuite créer un store fictif en appelant `new Vuex.Store` avec nos propres valeurs. À noter que l'on indique uniquement nos actions, car on ne s'intéresse qu'à elles.
 
-The actions are [jest mock functions](https://facebook.github.io/jest/docs/en/mock-functions.html). These mock functions give us methods to assert whether the actions were called or not.
+Les actions sont des [fonctions de simulations de Jest](https://facebook.github.io/jest/docs/en/mock-functions.html). Ces fonctions nous donnent accès à des méthodes afin de réaliser des assertions si l'action a été appelée ou non.
 
-We can then assert in our tests that the action stub was called when expected.
+On peut ensuite s'assurer dans nos tests que les actions ont été appelées au bon moment.
 
-Now the way we define the store might look a bit foreign to you.
+La manière dont on définit le store peut vous paraitre un peu étrange.
 
-We’re using `beforeEach` to ensure we have a clean store before each test. `beforeEach` is a mocha hook that’s called before each test. In our test, we are reassigning the store variables value. If we didn’t do this, the mock functions would need to be automatically reset. It also lets us change the state in our tests, without it affecting later tests.
+On utilise `beforeEach` pour s'assurer que nous avons un store propre avant chaque test. `beforeEach` est un hook de Mocha qui est appelé avant chaque test. Dans nos tests, on réassigne des valeurs aux variables du store. Si on ne le fait pas, les fonctions de simulations auraient besoin d'être automatiquement réinitialisées. Cela nous laisse la possibilité de changer l'état dans nos tests, sans avoir à affecter les prochains.
 
-The most important thing to note in this test is that **we create a mock Vuex store and then pass it to vue-test-utils**.
+La chose la plus importante à noter dans ce test est que **l'on crée une simulation d'un store Vuex, qui est ensuite passé à vue-test-utils**.
 
-Great, so now we can mock actions, let’s look at mocking getters.
+Génial, on peut désormais simuler des actions. Allons avoir comment simuler des accesseurs !
 
-## Mocking Getters
+## Simuler des accesseurs
 
 
 ``` html
@@ -130,9 +130,9 @@ export default{
 </script>
 ```
 
-This is a fairly simple component. It renders the result of the getters `clicks` and `inputValue`. Again, we don’t really care about what those getters returns – just that the result of them is being rendered correctly.
+C'est un composant relativement simple. Il affiche le résultat des accesseurs `clicks` et `inputValue`. Encore une fois, on se fiche de savoir ce que ces accesseurs retournent. On souhaite juste savoir si les résultats sont affichés correctement.
 
-Let’s see the test:
+Jetons un œil à un test :
 
 ``` js
 import { shallow, createLocalVue } from 'vue-test-utils'
@@ -158,33 +158,33 @@ describe('Getters.vue', () => {
     })
   })
 
-  it('Renders state.inputValue in first p tag', () => {
+  it('affiche `state.inputValue` dans la première balise <p>', () => {
     const wrapper = shallow(Actions, { store, localVue })
     const p = wrapper.find('p')
     expect(p.text()).toBe(getters.inputValue())
   })
 
-  it('Renders state.clicks in second p tag', () => {
+  it('affiche `stat.clicks` dans la seconde balise <p>', () => {
     const wrapper = shallow(Actions, { store, localVue })
     const p = wrapper.findAll('p').at(1)
     expect(p.text()).toBe(getters.clicks().toString())
   })
 })
 ```
-This test is similar to our actions test. We create a mock store before each test, pass it as an option when we call `shallow`, and assert that the value returned by our mock getters is being rendered.
+Ce test est similaire à notre test sur les actions. On créer un store fictif avant chaque test, on le passe ensuite comme une option lorsque l'on appelle `shallow`. Pour finir, on asserte que la valeur retournée par nos accesseurs fictifs est bien affichée.
 
-This is great, but what if we want to check our getters are returning the correct part of our state?
+C'est génial, mais comment faisons-nous pour vérifier que nos accesseurs retournent correctement les parties de l'état ?
 
-## Mocking with Modules
+## Simulation avec des modules
 
-[Modules](https://vuex.vuejs.org/en/modules.html) are useful for separating out our store into manageable chunks. They also export getters. We can use these in our tests.
+Les [modules](https://vuex.vuejs.org/en/modules.html) sont utiles pour séparer un store en plusieurs morceaux. Ils exportent des accesseurs que l'on peut utiliser dans nos tests.
 
-Let’s look at our component:
+Jetons un œil à ce composant :
 
 ``` html
 <template>
   <div>
-    <button @click="moduleActionClick()">Click</button>
+    <button @click="moduleActionClick()">Cliquer</button>
     <p>{{moduleClicks}}</p>
   </div>
 </template>
@@ -205,9 +205,8 @@ export default{
 }
 </script>
 ```
-Simple component that includes one action and one getter.
-
-And the test:
+Simple composant qui possède une action et un accesseur.
+Et le test :
 
 ``` js
 import { shallow, createLocalVue } from 'vue-test-utils'
@@ -242,14 +241,14 @@ describe('Modules.vue', () => {
     })
   })
 
-  it('calls store action moduleActionClick when button is clicked', () => {
+  it("appelle l'action du store moduleActionClick quand le bouton est cliqué", () => {
     const wrapper = shallow(Modules, { store, localVue })
     const button = wrapper.find('button')
     button.trigger('click')
     expect(actions.moduleActionClick).toHaveBeenCalled()
   })
 
-  it('Renders state.inputValue in first p tag', () => {
+  it("affiche `state.inputValue` dans la première balise <p>", () => {
     const wrapper = shallow(Modules, { store, localVue })
     const p = wrapper.find('p')
     expect(p.text()).toBe(state.module.clicks.toString())
@@ -257,8 +256,8 @@ describe('Modules.vue', () => {
 })
 ```
 
-### Resources
+### Ressources
 
-- [Example project for this guide](https://github.com/eddyerburgh/vue-test-utils-vuex-example)
+- [Projet exemple pour ce guide](https://github.com/eddyerburgh/vue-test-utils-vuex-example)
 - [localVue](../api/options.md#localvue)
 - [createLocalVue](../api/createLocalVue.md)
