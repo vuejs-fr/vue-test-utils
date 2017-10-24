@@ -1,13 +1,14 @@
 # setProps(props)
 
-- **Arguments:**
+- **引数:**
   - `{Object} props`
 
-- **Usage:**
+- **使用方法:**
 
-Sets `Wrapper` `vm` props and forces update.
+`Wrapper` `vm` プロパティを設定し更新を強制します。
 
-**Note the Wrapper must contain a Vue instance.**
+**Wrapper には Vue インスタンスを含む必要があることに注意してください**
+
 
 ```js
 import { mount } from 'vue-test-utils'
@@ -19,7 +20,7 @@ wrapper.setProps({ foo: 'bar' })
 expect(wrapper.vm.foo).to.equal('bar')
 ```
 
-You can also pass a `propsData` object, which will initialize the Vue instance with passed values.
+渡された値で Vue インスタンス を初期化する `propsData` オブジェクトを渡すことができます。
 
 ``` js
 // Foo.vue
