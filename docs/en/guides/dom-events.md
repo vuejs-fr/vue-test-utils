@@ -28,7 +28,7 @@ Vous pouvez utiliser `preventDefault` sur l'évènement en passant `preventDefau
 ```js
 const wrapper = mount(MyButton)
 
-wrapper.trigger('click', {preventDefault: true})
+wrapper.trigger('click', { preventDefault: true })
 ```
 
 
@@ -36,7 +36,7 @@ wrapper.trigger('click', {preventDefault: true})
 
 **Composant à tester**
 
-```js
+```html
 <template>
 <div>
   <button class="yes" @click="callYes">Oui</button>
@@ -92,7 +92,7 @@ describe('Évènement click', () => {
 
 Ce composant permet d'incrémenter / décrémenter la quantité en utilisant différentes touches.
 
-```js
+```html
 <template>
 <input type="text" @keydown.prevent="onKeydown" v-model="quantity" />
 </template>

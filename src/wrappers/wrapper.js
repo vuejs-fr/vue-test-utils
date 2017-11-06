@@ -109,7 +109,11 @@ export default class Wrapper implements BaseWrapper {
       targetClass = this.vm.$style[targetClass]
     }
 
-    return !!(this.element && this.element.classList.contains(targetClass))
+    const containsAllClasses = targetClass
+      .split(' ')
+      .every(target => this.element.classList.contains(target))
+
+    return !!(this.element && containsAllClasses)
   }
 
   /**
@@ -289,6 +293,14 @@ export default class Wrapper implements BaseWrapper {
       // $FlowIgnore : Problem with possibly null this.vm
       this.vm.$set(this.vm, [key], data[key])
     })
+
+    Object.keys(data).forEach((key) => {
+      // $FlowIgnore : Problem with possibly null this.vm
+      this.vm._watchers.forEach((watcher) => {
+        if (watcher.expression === key) { watcher.run() }
+      })
+    })
+
     this.update()
   }
 
@@ -378,6 +390,21 @@ export default class Wrapper implements BaseWrapper {
     }
 
     return this.element.textContent
+  }
+
+  /**
+   * Calls destroy on vm
+   */
+  destroy () {
+    if (!this.isVueComponent) {
+      throwError('wrapper.destroy() can only be called on a Vue instance')
+    }
+
+    if (this.element.parentNode) {
+      this.element.parentNode.removeChild(this.element)
+    }
+    // $FlowIgnore
+    this.vm.$destroy()
   }
 
   /**

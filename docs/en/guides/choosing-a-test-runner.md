@@ -6,7 +6,7 @@ Il y a un nombre conséquent de lanceurs de tests JavaScript et `vue-test-utils`
 
 Il y a tout de même plusieurs choses à considérer afin de choisir un lanceur de tests : variété des fonctionnalités, performance et support de la précompilation des composants monofichiers. Après avoir soigneusement analysé et comparé les bibliothèques, il y a deux lanceurs de tests que nous recommandons :
 
-- [Jest](https://facebook.github.io/jest/docs/en/getting-started.html#content) est le lanceur de test le plus complet en termes de fonctionnalités. Il requiert une configuration minimale, installe JSDOM par défaut, fournit des assertions prêtes à l'utilisation et a une très bonne interface en ligne de commandes. Cependant, vous allez avoir besoin d'un préprocesseur afin d'être capable d'importer les composants monofichiers dans vos tests. On a créé le préprocesseur `jest-vue` qui peut gérer les fonctionnalités communes des composants monofichiers. Il n'a cependant pas encore autant de fonctionnalités que vue-loader.
+- [Jest](https://facebook.github.io/jest/docs/en/getting-started.html#content) est le lanceur de test le plus complet en termes de fonctionnalités. Il requiert une configuration minimale, installe JSDOM par défaut, fournit des assertions prêtes à l'utilisation et a une très bonne interface en ligne de commandes. Cependant, vous allez avoir besoin d'un préprocesseur afin d'être capable d'importer les composants monofichiers dans vos tests. On a créé le préprocesseur `vue-jest` qui peut gérer les fonctionnalités communes des composants monofichiers. Il n'a cependant pas encore autant de fonctionnalités que `vue-loader`.
 
 - [mocha-webpack](https://github.com/zinserjan/mocha-webpack) est une surcouche de webpack + Mocha avec une expérience simplifiée et un mode de surveillance. Les bénéfices de cette installation sont que l'on peut avoir le support complet des composants monofichiers via webpack + `vue-loader`. Il y a cependant plus de configurations à réaliser.
 
@@ -29,7 +29,7 @@ require('jsdom-global')()
 
 Les composants Vue monofichiers nécessitent une étape de précompilation avant qu'ils soient lancés dans Node.js ou sur un navigateur. Il existe deux méthodes recommandées pour réaliser la compilation : avec un préprocesseur Jest ou directement en utilisant webpack.
 
-Le préprocesseur `jest-vue` supporte les fonctionnalités basiques des composants monofichiers. Il ne gère pas actuellement les blocs de style et les blocs personnalisés, qui sont eux uniquement supportés par `vue-loader`. Si vous utilisez ces fonctionnalités ou d'autres configurations liées à webpack, vous aurez besoin d'utiliser l'installation basée sur webpack + `vue-loader`
+Le préprocesseur `vue-jest` supporte les fonctionnalités basiques des composants monofichiers. Il ne gère pas actuellement les blocs de style et les blocs personnalisés, qui sont eux uniquement supportés par `vue-loader`. Si vous utilisez ces fonctionnalités ou d'autres configurations liées à webpack, vous aurez besoin d'utiliser l'installation basée sur webpack + `vue-loader`
 
 Lisez les guides suivants pour différentes installations :
 

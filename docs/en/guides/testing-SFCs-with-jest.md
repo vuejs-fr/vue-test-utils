@@ -27,10 +27,10 @@ Ensuite, on doit définir un script dans notre `package.json`.
 
 ## Traiter les composants monofichiers dans Jest
 
-Pour indiquer à Jest comment traiter les fichiers `*.vue`, on va avoir besoin d'installer et de configurer le préprocesseur `jest-vue` : 
+Pour indiquer à Jest comment traiter les fichiers `*.vue`, on va avoir besoin d'installer et de configurer le préprocesseur `vue-jest` : 
 
 ``` bash
-npm install --save-dev jest-vue
+npm install --save-dev vue-jest
 ```
 
 Ensuite, créez un objet `jest` dans `package.json` :
@@ -46,15 +46,15 @@ Ensuite, créez un objet `jest` dans `package.json` :
       "vue"
     ],
     "transform": {
-      // traite les fichiers `*.vue` avec jest-vue
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
+      // traite les fichiers `*.vue` avec vue-jest
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "mapCoverage": true
   }
 }
 ```
 
-> **Note :** `jest-vue` ne supporte actuellement pas toutes les fonctionnalités de `vue-loader`, par exemple le support des blocs personnalisés et du chargement de styles. De plus, quelques fonctionnalités spécifiques à webpack comme la scission de code ne sont pas supportées. Pour les utiliser, lisez le guide sur [tester des composants monofichiers avec Mocha + webpack](./testing-SFCs-with-mocha-webpack.md).
+> **Note :** `vue-jest` ne supporte actuellement pas toutes les fonctionnalités de `vue-loader`, par exemple le support des blocs personnalisés et du chargement de styles. De plus, quelques fonctionnalités spécifiques à webpack comme la scission de code ne sont pas supportées. Pour les utiliser, lisez le guide sur [tester des composants monofichiers avec Mocha + webpack](./testing-SFCs-with-mocha-webpack.md).
 
 ## Gérer les alias webpack
 
