@@ -5,7 +5,7 @@
 * [Guides](guides/README.md)
   * [Commencer](guides/getting-started.md)
   * [Astuces](guides/common-tips.md)
-  * [Mouse, Key and other DOM Events (EN)](guides/dom-events.md)
+  * [La souris, le clavier et les autres évènements DOM](guides/dom-events.md)
   * [Choisir un lanceur de tests](guides/choosing-a-test-runner.md)
   * [Tester des composants monofichiers avec Jest](guides/testing-SFCs-with-jest.md)
   * [Tester des composants monofichiers avec Mocha et webpack](guides/testing-SFCs-with-mocha-webpack.md)
