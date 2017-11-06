@@ -2,7 +2,7 @@
 
 * [Commencer](./getting-started.md)
 * [Astuces](./common-tips.md)
-* [Mouse, Key and other DOM Events (EN)](guides/dom-events.md)
+* [La souris, le clavier et les autres évènements DOM](./dom-events.md)
 * [Choisir un lanceur de tests](./choosing-a-test-runner.md)
 * [Utiliser avec Jest](./using-with-jest.md)
 * [Tester des composants monofichiers avec Jest](./testing-SFCs-with-jest.md)

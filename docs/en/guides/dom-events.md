@@ -1,8 +1,9 @@
-# Testing Key, Mouse and other DOM events
+# Tester le clavier, la souris et les autres évènements DOM
 
-## Trigger events
+## Déclencheur d'évènements
 
-The `Wrapper` expose a `trigger` method. It can be used to trigger DOM events.
+
+Le `Wrapper` expose une méthode `trigger`. Elle peut être utilisée pour déclencher des évènements du DOM.
 
 ```js
 const wrapper = mount(MyButton)
@@ -10,7 +11,7 @@ const wrapper = mount(MyButton)
 wrapper.trigger('click')
 ```
 
-You should be aware, that find returns a wrapper as well. Assuming `MyComponent` contains a button, the following code clicks the button.
+Vous devez être au courant que la méthode `find` retourne aussi un wrapper. En partant du principe que `MyComponent` contient un bouton, le code suivant clique sur le bouton.
 
 ```js
 const wrapper = mount(MyComponent)
@@ -20,9 +21,9 @@ wrapper.find('button').trigger('click')
 
 ## Options
 
-The trigger method takes an optional `options` object. The properties in the `options` object are added to the Event.
+La méthode `trigger` prend en paramètre optionnel l'objet `options`. Les propriétés de l'objet `options` sont ajoutées à l'évènement.
 
-You can run preventDefault on the event by passing `preventDefault: true` in `options`.
+Vous pouvez utiliser `preventDefault` sur l'évènement en passant `preventDefault: true` dans le paramètre `options`.
 
 ```js
 const wrapper = mount(MyButton)
@@ -31,15 +32,15 @@ wrapper.trigger('click', {preventDefault: true})
 ```
 
 
-## Mouse Click Example
+## Exemple de clic de souris
 
-**Component under test**
+**Composant à tester**
 
 ```js
 <template>
 <div>
-  <button class="yes" @click="callYes">Yes</button>
-  <button class="no" @click="callNo">No</button>
+  <button class="yes" @click="callYes">Oui</button>
+  <button class="no" @click="callNo">Non</button>
 </div>
 </template>
 <script>
@@ -52,10 +53,10 @@ export default {
   },
   methods: {
     callYes() {
-      this.callMe('yes')
+      this.callMe('oui')
     },
     callNo() {
-      this.callMe('no')
+      this.callMe('non')
     }
   }
 }
@@ -70,8 +71,8 @@ import YesNoComponent from '@/components/YesNoComponent'
 import { mount } from 'vue-test-utils'
 import sinon from 'sinon'
 
-describe('Click event', () => {
-  it('Click on yes button calls our method with argument "yes"', () => {
+describe('Évènement click', () => {
+  it('Cliquer sur le bouton oui appelle notre méthode avec l\'argument "oui"', () => {
     const spy = sinon.spy()
     const wrapper = mount(YesNoComponent, {
       propsData: {
@@ -80,16 +81,16 @@ describe('Click event', () => {
     })
     wrapper.find('button.yes').trigger('click')
 
-    spy.should.have.been.calledWith('yes')
+    spy.should.have.been.calledWith('oui')
   })
 })
 ```
 
-## Keyboard Example
+## Exemple de test clavier
 
-**Component under test**
+**Composant à tester**
 
-This component allows to increment/decrement the quantity using various keys.
+Ce composant permet d'incrémenter / décrémenter la quantité en utilisant différentes touches.
 
 ```js
 <template>
@@ -148,33 +149,33 @@ export default {
 import QuantityComponent from '@/components/QuantityComponent'
 import { mount } from 'vue-test-utils'
 
-describe('Key event tests', () => {
-  it('Quantity is zero by default', () => {
+describe('Tests événement clavier', () => {
+  it('La quantité est zéro par défaut', () => {
     const wrapper = mount(QuantityComponent)
     expect(wrapper.vm.quantity).to.equal(0)
   })
 
-  it('Cursor up sets quantity to 1', () => {
+  it('La flèche du haut positionne la quantité à 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.trigger('keydown.up')
     expect(wrapper.vm.quantity).to.equal(1)
   })
 
-  it('Cursor down reduce quantity by 1', () => {
+  it('La flèche du bas réduit la quantité de 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.down')
     expect(wrapper.vm.quantity).to.equal(4)
   })
 
-  it('Escape sets quantity to 0', () => {
+  it('La touche Échap positionne la quantité à 0', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.esc')
     expect(wrapper.vm.quantity).to.equal(0)
   })
 
-  it('Magic character "a" sets quantity to 13', () => {
+  it('Le caractère magique "a" positionne la quantité à 13', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.trigger('keydown', {
       which: 65
@@ -187,10 +188,10 @@ describe('Key event tests', () => {
 
 **Limitations**
 
-A key name after the dot `keydown.up` is translated to a `keyCode`. This is supported for the following names:
+Un nom de touche après le point `keydown.up` est traduit vers un `keyCode`. Cela est supporté pour les noms suivant :
 
 * enter, tab, delete, esc, space, up, down, left, right
 
 ## Important
 
-vue-test-utils triggers event synchronously. Consequently, `vue.nextTick` is not required.
+vue-test-utils déclenche les évènements de façon synchrone. Par conséquent, `vue.nextTick` n'est pas requis.
