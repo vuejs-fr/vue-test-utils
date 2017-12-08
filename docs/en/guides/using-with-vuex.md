@@ -109,7 +109,6 @@ Génial, on peut désormais simuler des actions. Allons avoir comment simuler de
 
 ## Simuler des accesseurs
 
-
 ``` html
 <template>
   <div>
