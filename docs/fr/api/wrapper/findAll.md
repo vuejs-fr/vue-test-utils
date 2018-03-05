@@ -1,6 +1,6 @@
-# findAll(selector)
+# `findAll(selector)`
 
-<p><strong>⚠Cette page est actuellement en cours de traduction française. Vous pouvez repasser plus tard ou <a href="https://github.com/vuejs-fr/vue-test-utils" target="_blank">participer à la traduction</a> de celle-ci dès maintenant !</strong></p><p>Returns a [`WrapperArray`](../wrapper-array/README.md) of [Wrappers](README.md).</p>
+<p><strong>⚠Cette page est actuellement en cours de traduction française. Vous pouvez repasser plus tard ou <a href="https://github.com/vuejs-fr/vue-test-utils" target="_blank">participer à la traduction</a> de celle-ci dès maintenant !</strong></p><p>Returns a [`WrapperArray`](../wrapper-array/README.md).</p>
 
 Use any valid [selector](../selectors.md).
 
@@ -12,8 +12,7 @@ Use any valid [selector](../selectors.md).
 - **Example:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 

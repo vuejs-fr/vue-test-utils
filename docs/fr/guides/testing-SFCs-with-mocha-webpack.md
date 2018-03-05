@@ -13,7 +13,7 @@ On va supposer que vous commencez avec une installation qui a déjà webpack, vu
 La première chose à faire est d'installer les dépendances de tests :
 
 ``` bash
-npm install --save-dev vue-test-utils mocha mocha-webpack
+npm install --save-dev @vue/test-utils mocha mocha-webpack
 ```
 
 Ensuite, on doit définir un script test dans notre `package.json`.
@@ -78,7 +78,7 @@ module.exports = {
 
 ### Mettre en place l'environnement du navigateur
 
-`vue-test-utils` requiert en environnement de navigateur pour fonctionner. On peut le simuler avec Node.js en utilisant `jsdom-global` :
+Vue Test Utils requiert en environnement de navigateur pour fonctionner. On peut le simuler avec Node.js en utilisant `jsdom-global` :
 
 ```bash
 npm install --save-dev jsdom jsdom-global
@@ -90,7 +90,7 @@ Puis dans `test/setup.js`:
 require('jsdom-global')()
 ```
 
-Cela ajoute un environnement de navigateur dans Node.js afin que `vue-test-utils` fonctionne correctement.
+Cela ajoute un environnement de navigateur dans Node.js afin que Vue Test Utils fonctionne correctement.
 
 ### Choisir une bibliothèque d'assertions
 
@@ -150,7 +150,7 @@ export default {
 Puis créez un test nommé `test/Counter.spec.js` avec le code suivant :
 
 ```js
-import { shallow } from 'vue-test-utils'
+import { shallow } from '@vue/test-utils'
 import Counter from '../src/Counter.vue'
 
 describe('Counter.vue', () => {
@@ -165,10 +165,14 @@ describe('Counter.vue', () => {
 Et maintenant on peut lancer le test avec :
 
 ```
-npm run unit
+npm run test
 ```
 
 Woohoo, nos tests fonctionnent !
+
+### Coverage (EN)
+
+To setup code coverage to `mocha-webpack`, follow [the `mocha-webpack` code coverage guide](https://github.com/zinserjan/mocha-webpack/blob/master/docs/guides/code-coverage.md).
 
 ### Ressources
 

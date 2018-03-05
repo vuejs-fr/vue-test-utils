@@ -2,7 +2,7 @@
 
 ## Installation
 
-Pour avoir un rapide avant-gout de `vue-test-utils`, clonez notre répertoire de démonstration avec l'installation de base puis installez les dépendances :
+Pour avoir un rapide avant-gout de Vue Test Utils, clonez notre répertoire de démonstration avec l'installation de base puis installez les dépendances :
 
 ``` bash
 git clone https://github.com/vuejs/vue-test-utils-getting-started
@@ -39,7 +39,7 @@ export default {
 
 ### Montages de composants
 
-`vue-test-utils` teste les composants Vue en les isolants puis en les montant, il simule les entrées nécessaires (props, injections et évènements utilisateur) et asserte les sorties (le rendu, les évènements émis).
+Vue Test Utils teste les composants Vue en les isolants puis en les montant, il simule les entrées nécessaires (props, injections et évènements utilisateur) et asserte les sorties (le rendu, les évènements émis).
 
 Les composants montés sont retournés dans un [Wrapper](./api/wrapper.md), qui expose de nombreuses méthodes pour manipuler, traverser et interroger l'instance du composant Vue en question.
 
@@ -50,7 +50,7 @@ Vous pouvez créer des wrappers en utilisant la méthode `mount`. Créons un fic
 
 // Importe la méthode `mount()` depuis test utils
 // et le composant qu'on souhaite tester
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import Counter from './counter'
 
 // On monte le composant et nous voilà avec un wrapper
@@ -60,7 +60,7 @@ const wrapper = mount(Counter)
 const vm = wrapper.vm
 
 // Pour inspecter le wrapper en profondeur, utilisez console
-// puis votre aventure avec vue-test-utils commence !
+// puis votre aventure avec Vue Test Utils commence !
 console.log(wrapper)
 ```
 
@@ -69,7 +69,7 @@ console.log(wrapper)
 Nous avons maintenant un wrapper, la première chose que l'on peut faire, c'est de vérifier que le contenu du rendu HTML du composant correspond à celui attendu.
 
 ```js
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import Counter from './counter'
 
 describe('Counter', () => {
@@ -106,7 +106,7 @@ it('le clic sur le bouton devrait incrémenter le compteur', () => {
 
 Vue groupe les mises à jour du DOM en attentes puis les appliquent de façon asynchrone pour prévenir d'éventuels multiples rendus causés par de multiples mutations de données. C'est pourquoi en pratique, on a souvent à utiliser `Vue.nextTick` pour attendre que Vue modifie le DOM actuel après avoir lancé quelques changements d'état.
 
-Pour simplifier cela, `vue-test-utils` applique toutes les mises à jour de façon synchrone afin que vous n'ayez pas besoin d'utiliser `Vue.nextTick` pour attendre des mises à jour du DOM dans vos tests.
+Pour simplifier cela, Vue Test Utils applique toutes les mises à jour de façon synchrone afin que vous n'ayez pas besoin d'utiliser `Vue.nextTick` pour attendre des mises à jour du DOM dans vos tests.
 
 *Note : `nextTick` est toujours nécessaire quand vous souhaitez explicitement faire avancer la boucle des évènements, pour des opérations telles que des fonctions de rappel ou des résolutions de promesses.*
 
@@ -140,5 +140,5 @@ it("attraper l'erreur avec une promesse", () => {
 
 ## Et après ?
 
-- Intégrez `vue-test-utils` dans votre projet en [choisissant votre lanceur de tests](./choosing-a-test-runner.md)
+- Intégrez Vue Test Utils dans votre projet en [choisissant votre lanceur de tests](./choosing-a-test-runner.md)
 - En apprendre plus sur les [techniques et astuces pour écrire des tests](./common-tips.md)

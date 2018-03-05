@@ -1,8 +1,8 @@
 # Config
 
-<p><strong>⚠Cette page est actuellement en cours de traduction française. Vous pouvez repasser plus tard ou <a href="https://github.com/vuejs-fr/vue-test-utils" target="_blank">participer à la traduction</a> de celle-ci dès maintenant !</strong></p><p>vue-test-utils includes a config object to defined options used by vue-test-utils.</p>
+<p><strong>⚠Cette page est actuellement en cours de traduction française. Vous pouvez repasser plus tard ou <a href="https://github.com/vuejs-fr/vue-test-utils" target="_blank">participer à la traduction</a> de celle-ci dès maintenant !</strong></p><p>Vue Test Utils includes a config object to defined options used by Vue Test Utils.</p>
 
-## `vue-test-utils` Config Options
+## Vue Test Utils Config Options
 
 ### `stubs`
 
@@ -12,6 +12,7 @@
   'transition-group': TransitionGroupStub
 }`
 
+The stub stored in `config.stubs` is used by default.  
 Stubs to use in components. These are overwritten by `stubs` passed in the mounting options.
 
 When passing `stubs` as an array in the mounting options, `config.stubs` are converted to an array, and will stub components with a basic component that returns `<!---->`.
@@ -19,7 +20,7 @@ When passing `stubs` as an array in the mounting options, `config.stubs` are con
 Example:
 
 ```js
-import VueTestUtils from 'vue-test-utils'
+import VueTestUtils from '@vue/test-utils'
 
-VueTestUtils.config.stubs['my-compomnent'] = '<div />'
+VueTestUtils.config.stubs['my-component'] = '<div />'
 ```
