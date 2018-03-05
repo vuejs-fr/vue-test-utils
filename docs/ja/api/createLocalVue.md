@@ -10,8 +10,7 @@
 `options.localVue` と一緒に使用してください。
 
 ```js
-import { createLocalVue, shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { createLocalVue, shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const localVue = createLocalVue()

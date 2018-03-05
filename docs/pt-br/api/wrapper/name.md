@@ -7,8 +7,7 @@ Retorna o nome do componente se o wrapper for uma instância do Vue, ou então o
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

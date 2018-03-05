@@ -13,8 +13,7 @@ Returns `true` if `Wrapper` DOM node contains attribute with matching value.
 - **Example:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)
@@ -26,8 +25,7 @@ expect(wrapper.hasAttribute('id', 'foo')).toBe(true)
 You could get the attribute from the `Wrapper.element` to have a value based assertion:
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

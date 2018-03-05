@@ -5,8 +5,7 @@ Destrói a instância do componente Vue.
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
 
 const spy = sinon.stub()
@@ -18,5 +17,5 @@ mount({
   }
 }).destroy()
 
-expect(spy.calledOnce).to.equal(true)
+expect(spy.calledOnce).toBe(true)
 ```

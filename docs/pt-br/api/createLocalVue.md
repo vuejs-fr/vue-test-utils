@@ -10,8 +10,7 @@ O `createLocalVue` retorna uma classe do Vue para que você possa adicionar comp
 Usando com o `options.localVue`
 
 ```js
-import { createLocalVue, shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { createLocalVue, shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const localVue = createLocalVue()

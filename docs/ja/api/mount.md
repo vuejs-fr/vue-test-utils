@@ -13,15 +13,12 @@
 
 - **使い方:**
 
-最初の DOM ノードまたは Vue コンポーネント一致セレクタの [`Wrapper`](./wrapper/README.md) を返します。
-
-有効な[セレクタ](./selectors.md)を使用してください。
+マウントされて描画された Vue コンポーネントを含む [`Wrapper`](./wrapper/README.md) を生成します。
 
 **オプションなし:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -34,8 +31,7 @@ describe('Foo', () => {
 **Vueオプションを使用:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -53,8 +49,7 @@ describe('Foo', () => {
 **DOMへのアタッチ:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -69,8 +64,7 @@ describe('Foo', () => {
 **デフォルトおよび名前付きスロット:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -92,8 +86,7 @@ describe('Foo', () => {
 **グローバルプロパティのスタブ:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -112,8 +105,7 @@ describe('Foo', () => {
 **コンポーネントのスタブ:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import Faz from './Faz.vue'
@@ -121,8 +113,8 @@ import Faz from './Faz.vue'
 describe('Foo', () => {
   it('renders a div', () => {
     const wrapper = mount(Foo, {
-      stub: {
-        Bar: '<div class="stubbed />',
+      stubs: {
+        Bar: '<div class="stubbed" />',
         BarFoo: true,
         FooBar: Faz
       }

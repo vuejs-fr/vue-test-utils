@@ -1,21 +1,17 @@
-# trigger(eventName)
+# `trigger(eventName)`
 
 <p><strong>⚠Cette page est actuellement en cours de traduction française. Vous pouvez repasser plus tard ou <a href="https://github.com/vuejs-fr/vue-test-utils" target="_blank">participer à la traduction</a> de celle-ci dès maintenant !</strong></p><p>Triggers an event on the `Wrapper` DOM node.</p>
 
 `trigger` takes an optional `options` object. The properties in the `options` object are added to the Event.
 
-You can run `preventDefault` on the event by passing `preventDefault: true` in `options`.
-
 - **Arguments:**
   - `{string} eventName`
   - `{Object} options`
-    - `{boolean} preventDefault`
 
 - **Example:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
 import Foo from './Foo'
 
@@ -30,9 +26,18 @@ wrapper.trigger('click', {
   button: 0
 })
 
-wrapper.trigger('click', {
-  preventDefault: true
-})
-
 expect(clickHandler.called).toBe(true)
+```
+- **Setting the event target:**
+
+Under the hood, `trigger` creates an `Event` object and dispatches the event on the Wrapper element.
+
+It's not possible to edit the `target` value of an `Event` object, so you can't set `target` in the options object.
+
+To add an attribute to the `target`, you need to set the value of the Wrapper element before calling `trigger`. You can do this with the `element` property.
+
+```js
+const input = wrapper.find('input')
+input.element.value = 100
+input.trigger('click')
 ```

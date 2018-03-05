@@ -10,13 +10,12 @@ Define as propriedades do `vm` do wrapper e força sua atualização.
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)
 wrapper.setProps({ foo: 'bar' })
-expect(wrapper.vm.foo).to.equal('bar')
+expect(wrapper.vm.foo).toBe('bar')
 ```
 
 Além disso, você pode passar o objeto `propsData`, que irá inicializar a instância do Vue com os valores passados.
@@ -34,8 +33,7 @@ export default {
 ```
 
 ``` js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo, {
@@ -44,5 +42,5 @@ const wrapper = mount(Foo, {
   }
 })
 
-expect(wrapper.vm.foo).to.equal('bar')
+expect(wrapper.vm.foo).toBe('bar')
 ```

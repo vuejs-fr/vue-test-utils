@@ -20,8 +20,7 @@ Use any valid [selector](selectors.md).
 **Without options:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -35,8 +34,7 @@ describe('Foo', () => {
 **With Vue options:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -54,8 +52,7 @@ describe('Foo', () => {
 **Attach to DOM:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -70,8 +67,7 @@ describe('Foo', () => {
 **Default and named slots:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -93,8 +89,7 @@ describe('Foo', () => {
 **Stubbing global properties:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -113,8 +108,7 @@ describe('Foo', () => {
 **Stubbing components:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import Faz from './Faz.vue'
@@ -122,8 +116,8 @@ import Faz from './Faz.vue'
 describe('Foo', () => {
   it('renders a div', () => {
     const wrapper = mount(Foo, {
-      stub: {
-        Bar: '<div class="stubbed />',
+      stubs: {
+        Bar: '<div class="stubbed" />',
         BarFoo: true,
         FooBar: Faz
       }

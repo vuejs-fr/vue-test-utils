@@ -6,13 +6,12 @@
   - `{Object} options`
     - `{boolean} attachToDocument`
     - `{Object} context`
+      - `{Array<Component|Object>|Component} children`
     - `{Object} slots`
         - `{Array<Componet|Object>|Component|String} default`
         - `{Array<Componet|Object>|Component|String} named`
     - `{Object} mocks`
     - `{Object|Array<string>} stubs`
-    - `{boolean} clone`
-    - `{Object} children`
     - `{Vue} localVue`
 
 - **返回值：**`{Wrapper}`
@@ -23,17 +22,12 @@
 
 - **用法：**
 
-返回第一个 DOM 节点或匹配选择器的 Vue 组件的 [`Wrapper`](wrapper/README.md)。
-
-将存根所有的自组件。
-
-可使用任何有效的[选择器](./selectors.md)。
+和 [`mount`](mount.md) 一样，创建一个包含被挂载和渲染的 Vue 组件的 [`Wrapper`](wrapper/README.md)，不同的是被存根的子组件。
 
 **无选项：**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -47,8 +41,7 @@ describe('Foo', () => {
 **使用 Vue 选项：**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -66,8 +59,7 @@ describe('Foo', () => {
 **固定在 DOM 上：**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -83,8 +75,7 @@ describe('Foo', () => {
 **默认的和具名的插槽：**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -106,8 +97,7 @@ describe('Foo', () => {
 **将全局属性存根：**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {

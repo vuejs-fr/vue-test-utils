@@ -14,7 +14,6 @@ As opções do Vue são passadas para o componente quando uma nova instância é
 - [attachToDocument](#attachtodocument)
 - [attrs](#attrs)
 - [listeners](#listeners)
-- [clone](#clone)
 
 ### `context`
 
@@ -43,7 +42,6 @@ Forneça um objeto do slot para o componente. A chave corresponde ao nome do slo
 Exemplo:
 
 ```js
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 
@@ -91,7 +89,6 @@ Adiciona uma propriedade adicional à instância. Ótimo para simular injeções
 Exemplo:
 
 ```js
-import { expect } from 'chai'
 
 const $route = { path: 'http://www.meusite.com.br' }
 const wrapper = shallow(Component, {
@@ -111,9 +108,8 @@ Uma cópia local do Vue é criada pelo [createLocalVue](./createLocalVue.md) par
 Exemplo:
 
 ```js
-import { createLocalVue, mount } from 'vue-test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 
 const localVue = createLocalVue()
@@ -152,14 +148,3 @@ Define o objeto `$attrs` da instância do componente.
 - tipo: `Object`
 
 Define o objeto `$listeners` da instância do componente.
-
-### `clone`
-
-- tipo: `Boolean`
-- padrão: `true`
-
-Clona o componente antes de monta-lo se o valor for `true`, evitando qualquer mutação no componente original.
-
-`options.mocks` (`Object`): Adiciona variáveis global à instância do Vue.
-
-`options.localVue` (`Object`): classe do Vue usada no método `mount`. Veja [createLocalVue](createLocalVue.md)

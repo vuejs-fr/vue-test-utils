@@ -12,8 +12,7 @@ Retorna `true` se o wrapper contém a classe.
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

@@ -44,7 +44,7 @@ export default{
 Давайте посмотрим, как это выглядит:
 
 ``` js
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Actions from '../../../src/components/Actions'
 
@@ -93,7 +93,7 @@ describe('Actions.vue', () => {
 
 Что тут происходит? Сначала мы говорим Vue использовать Vuex с помощью метода `localVue.use`. Это всего лишь обёртка вокруг `Vue.use`.
 
-Затем мы создаём мок хранилища вызовом `Vuex.store` с нашими заготовленными значениями. Мы передаём ему только дейсвтия, так как это всё что нам необходимо.
+Затем мы создаём мок хранилища вызовом `new Vuex.store` с нашими заготовленными значениями. Мы передаём ему только дейсвтия, так как это всё что нам необходимо.
 
 Действия реализуются с помощью [mock-функций jest](https://facebook.github.io/jest/docs/en/mock-functions.html). Эти mock-функции предоставляют нам методы для проверки, вызывались ли действия или нет.
 
@@ -134,7 +134,7 @@ export default{
 Давайте посмотрим на тест:
 
 ``` js
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Actions from '../../../src/components/Getters'
 
@@ -211,7 +211,7 @@ export default{
 И тест:
 
 ``` js
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Modules from '../../../src/components/Modules'
 import module from '../../../src/store/module'

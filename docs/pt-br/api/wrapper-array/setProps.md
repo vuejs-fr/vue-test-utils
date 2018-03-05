@@ -10,8 +10,7 @@ Define as `propriedades` do componente e força sua atualização para cada wrap
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 

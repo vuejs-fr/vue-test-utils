@@ -6,13 +6,12 @@
   - `{Object} options`
     - `{boolean} attachToDocument`
     - `{Object} context`
+      - `{Array<Component|Object>|Component} children`
     - `{Object} slots`
         - `{Array<Componet|Object>|Component|String} default`
         - `{Array<Componet|Object>|Component|String} named`
     - `{Object} mocks`
     - `{Object|Array<string>} stubs`
-    - `{boolean} clone`
-    - `{Object} children`
     - `{Vue} localVue`
 
 - **Returns:** `{Wrapper}`
@@ -23,17 +22,12 @@
 
 - **Usage:**
 
-Returns [`Wrapper`](./wrapper/README.md) of first DOM node or Vue component matching selector.
-
-Stubs all child components.
-
-Use any valid [selector](./selectors.md).
+Like [`mount`](mount.md), it creates a [`Wrapper`](wrapper/README.md) that contains the mounted and rendered Vue component, but with stubbed child components.
 
 **Without options:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -47,8 +41,7 @@ describe('Foo', () => {
 **With Vue options:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -66,8 +59,7 @@ describe('Foo', () => {
 **Attach to DOM:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -83,8 +75,7 @@ describe('Foo', () => {
 **Default and named slots:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -106,8 +97,7 @@ describe('Foo', () => {
 **Stubbing global properties:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {

@@ -7,8 +7,7 @@
 - **Пример:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 
 const wrapper = mount(Component)
 
@@ -43,4 +42,16 @@ expect(wrapper.emitted('foo').length).toBe(2)
 
 // проверка, что с событием были переданы определённые данные
 expect(wrapper.emitted('foo')[1]).toEqual([123])
+```
+
+Метод `.emitted()`, когда он вызывается, каждый раз возвращает тот же объект, а не новый, поэтому объект будет обновляться при генерации новых событий:
+
+```js
+const emitted = wrapper.emitted()
+
+expect(emitted.foo.length).toBe(1)
+
+// делаем что-то, что заставляет `wrapper` сгенерировать событие "foo"
+
+expect(emitted.foo.length).toBe(2)
 ```

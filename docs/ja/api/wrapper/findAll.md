@@ -1,6 +1,6 @@
 # findAll(selector)
 
-[ラッパ (Wrapper)](./README.md) の[`WrapperArray`](../wrapper-array/README.md)を返します。
+[`WrapperArray`](../wrapper-array/README.md)を返します。
 
 有効な[セレクタ](../selectors.md)を使用してください。
 
@@ -12,8 +12,7 @@
 - **例:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 

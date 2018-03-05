@@ -10,8 +10,7 @@
 - **例:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
 import Foo from './Foo.vue'
 

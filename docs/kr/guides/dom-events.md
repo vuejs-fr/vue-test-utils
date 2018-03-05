@@ -22,12 +22,10 @@ wrapper.find('button').trigger('click')
 
 트리거 메소드는 선택적으로 `options` 객체를 가질 수 있습니다. 이 `options` 객체의 속성이 이벤트에 추가됩니다.
 
-`options`에 `preventDefault: true`를 전달하여 이벤트에서 preventDefault를 실행할 수 있습니다.
-
 ```js
 const wrapper = mount(MyButton)
 
-wrapper.trigger('click', { preventDefault: true })
+wrapper.trigger('click', { button: 0 })
 ```
 
 
@@ -67,7 +65,7 @@ export default {
 
 ```js
 import YesNoComponent from '@/components/YesNoComponent'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon' // sinon.js
 
 describe('Click event', () => {
@@ -146,32 +144,32 @@ export default {
 
 ```js
 import QuantityComponent from '@/components/QuantityComponent'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 describe('Key event tests', () => {
   it('Quantity is zero by default', () => {
     const wrapper = mount(QuantityComponent)
-    expect(wrapper.vm.quantity).to.equal(0)
+    expect(wrapper.vm.quantity).toBe(0)
   })
 
   it('Cursor up sets quantity to 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.trigger('keydown.up')
-    expect(wrapper.vm.quantity).to.equal(1)
+    expect(wrapper.vm.quantity).toBe(1)
   })
 
   it('Cursor down reduce quantity by 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.down')
-    expect(wrapper.vm.quantity).to.equal(4)
+    expect(wrapper.vm.quantity).toBe(4)
   })
 
   it('Escape sets quantity to 0', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.esc')
-    expect(wrapper.vm.quantity).to.equal(0)
+    expect(wrapper.vm.quantity).toBe(0)
   })
 
   it('Magic character "a" sets quantity to 13', () => {
@@ -179,7 +177,7 @@ describe('Key event tests', () => {
     wrapper.trigger('keydown', {
       which: 65
     })
-    expect(wrapper.vm.quantity).to.equal(13)
+    expect(wrapper.vm.quantity).toBe(13)
   })
 })
 

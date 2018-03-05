@@ -10,8 +10,7 @@ Verifica se algum wrapper do Array possui o [seletor](../selectors.md) no seu `v
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

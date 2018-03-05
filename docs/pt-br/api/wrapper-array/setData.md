@@ -10,8 +10,7 @@ Define os dados e força a atualização de cada wrapper presente no Array.
 - **Exemplho:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 

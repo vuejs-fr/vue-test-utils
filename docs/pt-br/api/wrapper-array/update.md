@@ -7,8 +7,7 @@ Se for chamado a partir de um componente Vue, força a atualização de cada com
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

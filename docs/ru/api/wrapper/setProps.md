@@ -10,13 +10,12 @@
 **Обратите внимание, что `Wrapper` должен содержать экземпляр Vue.**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)
 wrapper.setProps({ foo: 'bar' })
-expect(wrapper.vm.foo).to.equal('bar')
+expect(wrapper.vm.foo).toBe('bar')
 ```
 
 Вы также можете передать объект `propsData`, который инициализирует экземпляр Vue с переданными значениями.
@@ -34,8 +33,7 @@ export default {
 ```
 
 ``` js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo, {
@@ -44,5 +42,5 @@ const wrapper = mount(Foo, {
   }
 })
 
-expect(wrapper.vm.foo).to.equal('bar')
+expect(wrapper.vm.foo).toBe('bar')
 ```

@@ -20,8 +20,7 @@
 **옵션없이 사용**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -34,8 +33,7 @@ describe('Foo', () => {
 **Vue 옵션과 사용**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -53,8 +51,7 @@ describe('Foo', () => {
 **DOM에 붙이기**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -69,8 +66,7 @@ describe('Foo', () => {
 **기본 값, 이름을 가지고 있는 슬롯**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -92,8 +88,7 @@ describe('Foo', () => {
 **글로벌 속성 스텁**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -112,8 +107,7 @@ describe('Foo', () => {
 **컴포넌트 스텁**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import Faz from './Faz.vue'

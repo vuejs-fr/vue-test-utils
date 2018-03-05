@@ -23,8 +23,6 @@
 
 Vue 组件也是有效的选择器。
 
-`vue-test-utils` 使用 `name` 属性搜索匹配 Vue 组件的实例树。
-
 ```js
 // Foo.vue
 
@@ -34,8 +32,7 @@ export default {
 ```
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = shallow(Foo)
@@ -44,9 +41,19 @@ expect(wrapper.is(Foo)).toBe(true)
 
 ## 查找选项对象
 
+### Name
+
+Vue Test Utils 允许通过一个查找选项对象在组件包裹器上根据一个组件的 `name` 选择元素。
+
+
+```js
+const buttonWrapper = wrapper.find({ name: 'my-button' })
+buttonWrapper.trigger('click')
+```
+
 ### Ref
 
-`vue-test-utils` 允许通过一个查找选项对象在组件包裹器上根据 `$ref` 选择元素。
+Vue Test Utils 允许通过一个查找选项对象在组件包裹器上根据 `$ref` 选择元素。
 
 ```js
 const buttonWrapper = wrapper.find({ ref: 'myButton' })

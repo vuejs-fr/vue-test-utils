@@ -6,13 +6,12 @@
   - `{Object} options`
     - `{boolean} attachToDocument`
     - `{Object} context`
+      - `{Array<Component|Object>|Component} children`
     - `{Object} slots`
         - `{Array<Componet|Object>|Component|String} default`
         - `{Array<Componet|Object>|Component|String} named`
-    - `{Object} intercept`
+    - `{Object} mocks`
     - `{Object|Array<string>} stubs`
-    - `{boolean} clone`
-    - `{Object} children`
     - `{Vue} localVue`
 
 - **戻り値:** `{Wrapper}`
@@ -23,17 +22,13 @@
 
 - **使い方:**
 
-最初の DOM ノードまたは Vue コンポーネント一致セレクタの [`Wrapper`](./wrapper/) を返します。
-
-全ての子コンポーネントをスタブします。
-
-有効な[セレクタ](./selectors.md)を使用してください。
+[`mount`](mount.md)のようにマウントされて描画された Vue コンポーネントを含む [`Wrapper`](./wrapper/README.md) を生成しますが、  
+子コンポーネントはスタブされたコンポーネントです。
 
 **オプションなし:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -47,8 +42,7 @@ describe('Foo', () => {
 **Vueオプションを使用:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -66,8 +60,7 @@ describe('Foo', () => {
 **DOMへのアタッチ:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -83,8 +76,7 @@ describe('Foo', () => {
 **デフォルトおよび名前付きスロット:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -106,8 +98,7 @@ describe('Foo', () => {
 **グローバルプロパティのスタブ:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {

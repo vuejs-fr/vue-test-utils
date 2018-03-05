@@ -13,15 +13,12 @@
 
 - **用法：**
 
-返回第一个 DOM 节点或匹配选择器的 Vue 组件的 [`Wrapper`](wrapper/README.md)。
-
-可使用任何有效的[选择器](selectors.md)。
+创建一个包含被挂载和渲染的 Vue 组件的 [`Wrapper`](wrapper/README.md)。
 
 **Without options:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -35,8 +32,7 @@ describe('Foo', () => {
 **使用 Vue 选项：**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -54,8 +50,7 @@ describe('Foo', () => {
 **固定在 DOM 上：**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -70,8 +65,7 @@ describe('Foo', () => {
 **默认的和具名的插槽：**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -93,8 +87,7 @@ describe('Foo', () => {
 **将全局属性存根：**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -113,8 +106,7 @@ describe('Foo', () => {
 **将组件存根：**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import Faz from './Faz.vue'
@@ -122,8 +114,8 @@ import Faz from './Faz.vue'
 describe('Foo', () => {
   it('renders a div', () => {
     const wrapper = mount(Foo, {
-      stub: {
-        Bar: '<div class="stubbed />',
+      stubs: {
+        Bar: '<div class="stubbed" />',
         BarFoo: true,
         FooBar: Faz
       }

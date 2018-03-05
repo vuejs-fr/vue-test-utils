@@ -4,18 +4,14 @@
 
 В `trigger` также можно передать опциональный объект `options`. Свойства объекта `options` будут добавлены к Event.
 
-Вы можете вызвать `preventDefault` на событие передав `preventDefault: true` в `options`.
-
 - **Принимает:**
   - `{string} eventName`
   - `{Object} options`
-    - `{boolean} preventDefault`
 
 - **Пример:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
 import Foo from './Foo'
 
@@ -30,9 +26,19 @@ wrapper.trigger('click', {
   button: 0
 })
 
-wrapper.trigger('click', {
-  preventDefault: true
-})
-
 expect(clickHandler.called).toBe(true)
+```
+
+- **Установка target для event:**
+
+Под капотом, `trigger` создаёт объект `Event` и вызывает событие на элементе Wrapper.
+
+Невозможно изменить значение `target` объекта `Event`, поэтому вы не можете установить `target` в объекте опций.
+
+Чтобы добавить атрибут к `target`, вам нужно установить значение элемента Wrapper перед вызовом `trigger`. Вы можете сделать это с помощью свойства `element`.
+
+```js
+const input = wrapper.find('input')
+input.element.value = 100
+input.trigger('click')
 ```

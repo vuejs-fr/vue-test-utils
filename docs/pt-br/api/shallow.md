@@ -11,7 +11,6 @@
         - `{Array<Componet|Object>|Component|String} named`
     - `{Object} mocks`
     - `{Object|Array<String>} stubs`
-    - `{Boolean} clone`
     - `{Object} children`
     - `{Vue} localVue`
 
@@ -32,8 +31,7 @@ Use qualquer [seletor](selectors.md) válido.
 **Sem opções:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -47,8 +45,7 @@ describe('Foo', () => {
 **With Vue options:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -66,8 +63,7 @@ describe('Foo', () => {
 **Anexa ao DOM:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {
@@ -83,8 +79,7 @@ describe('Foo', () => {
 **Com slots padrões ou nomeados:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 import FooBar from './FooBar.vue'
@@ -106,8 +101,7 @@ describe('Foo', () => {
 **Adicionando propriedades globais:**
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 describe('Foo', () => {

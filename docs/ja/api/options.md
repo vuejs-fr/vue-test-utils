@@ -1,8 +1,6 @@
 # マウンティングオプション
 
-`mount` と `shallow` に対するオプション。オプションオブジェクトには、`vue-test-utils` のマウントオプションと生の Vue オプションの両方を含めることができます。
-
-新しくインスタンスが作成されると、Vue オプションがコンポーネントに渡されます。例: `store`、 `propsData` など。完全なリストについては [Vue API ドキュメント](https://jp.vuejs.org/v2/api/)を参照してください。
+`mount` と `shallow` に対するオプション。オプションオブジェクトには、`vue-test-utils` のマウントオプションとその他のオプションを含めることができます。
 
 ## `vue-test-utils` の詳細なマウンティングオプション
 
@@ -14,7 +12,7 @@
 - [attachToDocument](#attachtodocument)
 - [attrs](#attrs)
 - [listeners](#listeners)
-- [clone](#clone)
+- [provide](#provide)
 
 ### `context`
 
@@ -43,7 +41,6 @@ expect(wrapper.is(Component)).toBe(true)
 例:
 
 ```js
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 
@@ -57,11 +54,17 @@ const wrapper = shallow(Component, {
 expect(wrapper.find('div')).toBe(true)
 ```
 
+#### テキストを渡す
+
+テキストを値として `slots` に渡すことはできますが、1つ制限事項があります。  
+PhantomJS をサポートしません。  
+[Puppeteer](https://github.com/karma-runner/karma-chrome-launcher#headless-chromium-with-puppeteer)を使用してください。
+
 ### `stubs`
 
 - type: `{ [name: string]: Component | boolean } | Array<string>`
 
-子のコンポーネントをスタブします。スタブまたはオブジェクトに対するコンポーネント名の配列になります。`stabs` が配列の場合、すべてのスタブは `<!---->` になります。
+子のコンポーネントをスタブします。スタブまたはオブジェクトに対するコンポーネント名の配列になります。`stubs` が配列の場合、すべてのスタブは `<!---->` になります。
 
 例:
 
@@ -91,8 +94,6 @@ shallow(Component, {
 例:
 
 ```js
-import { expect } from 'chai'
-
 const $route = { path: 'http://www.example-path.com' }
 const wrapper = shallow(Component, {
   mocks: {
@@ -111,9 +112,8 @@ expect(wrapper.vm.$route.path).toBe($route.path)
 例:
 
 ```js
-import { createLocalVue, mount } from 'vue-test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 
 const localVue = createLocalVue()
@@ -153,13 +153,38 @@ expect(wrapper.vm.$route).toBeInstanceOf(Object)
 
 コンポーネントインスタンスの `$listeners` オブジェクトを設定します。
 
-### `clone`
+### `provide`
 
-- 型: `boolean`
-- デフォルト: `true`
+- 型: `Object`
 
-`true` に設定されている場合、マウント前にコンポーネントを複製し、元のコンポーネントの定義を変更することはありません。
+コンポーネントに指定したプロパティを注入します。[provide/inject](https://vuejs.org/v2/api/#provide-inject) を参照してください。
 
-`options.mocks` (`Object`): Vue インスタンスにグローバルを追加します。
+## その他のオプション
 
-`options.localVue` (`Object`): `mount` で使う Vue クラスです。[createLocalVue](./createLocalVue.md)を参照してください。
+`mount` と `shallow` にマウンティングオプション以外のオプションが渡されると、コンポーネントのオプションは [extends](https://vuejs.org/v2/api/#extends) を使ってマウンティングオプション以外のオプションに上書きされます。
+
+```js
+const Component = {
+  template: '<div>{{ foo() }}{{ bar() }}{{ baz() }}</div>',
+  methods: {
+    foo () {
+      return 'a'
+    },
+    bar () {
+      return 'b'
+    }
+  }
+}
+const options = {
+  methods: {
+    bar () {
+      return 'B'
+    },
+    baz () {
+      return 'C'
+    }
+  }
+}
+const wrapper = mount(Component, options)
+expect(wrapper.text()).toBe('aBC')
+```

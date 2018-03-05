@@ -2,7 +2,7 @@
 
 Un lanceur de tests est un programme qui lance des tests (et oui !).
 
-Il y a un nombre conséquent de lanceurs de tests JavaScript et `vue-test-utils` fonctionne avec tous. `vue-test-utils` est agnostique en terme de lanceurs de tests.
+Il y a un nombre conséquent de lanceurs de tests JavaScript et Vue Test Utils fonctionne avec tous. Il est agnostique en terme de lanceurs de tests.
 
 Il y a tout de même plusieurs choses à considérer afin de choisir un lanceur de tests : variété des fonctionnalités, performance et support de la précompilation des composants monofichiers. Après avoir soigneusement analysé et comparé les bibliothèques, il y a deux lanceurs de tests que nous recommandons :
 
@@ -12,7 +12,7 @@ Il y a tout de même plusieurs choses à considérer afin de choisir un lanceur 
 
 ## Environnement du navigateur
 
-`vue-test-utils` se fie à un environnement de navigateur. Techniquement, vous pouvez le lancer dans un vrai navigateur, mais cela n'est pas recommandé dû à la complexité de lancer de réels navigateurs sur différentes plateformes. Au lieu de cela, nous recommandons de lancer les tests sous Node.js avec un environnement virtuel de navigateur en utilisant le [JSDOM](https://github.com/tmpvar/jsdom).
+Vue Test Utils se fie à un environnement de navigateur. Techniquement, vous pouvez le lancer dans un vrai navigateur, mais cela n'est pas recommandé dû à la complexité de lancer de réels navigateurs sur différentes plateformes. Au lieu de cela, nous recommandons de lancer les tests sous Node.js avec un environnement virtuel de navigateur en utilisant le module [JSDOM](https://github.com/tmpvar/jsdom).
 
 Le lanceur de tests Jest installe automatiquement JSDOM. Pour d'autres lanceurs de tests, il faut le faire manuellement en utilisant [jsdom-global](https://github.com/rstacruz/jsdom-global) dans la déclaration de vos tests :
 
@@ -38,8 +38,9 @@ Lisez les guides suivants pour différentes installations :
 
 ## Ressources
 
-- [Comparaison de lanceurs de tests](https://github.com/eddyerburgh/vue-unit-test-perf-comparison)
-- [Projet exemple avec Jest](https://github.com/vuejs/vue-test-utils-jest-example)
-- [Projet exemple avec Mocha](https://github.com/vuejs/vue-test-utils-mocha-webpack-example)
-- [Projet exemple avec tape](https://github.com/eddyerburgh/vue-test-utils-tape-example)
-- [Projet exemple avec AVA](https://github.com/eddyerburgh/vue-test-utils-ava-example)
+- [Test runner performance comparison](https://github.com/eddyerburgh/vue-unit-test-perf-comparison)
+- [Example project with Jest](https://github.com/vuejs/vue-test-utils-jest-example)
+- [Example project with Mocha](https://github.com/vuejs/vue-test-utils-mocha-webpack-example)
+- [Example project with tape](https://github.com/eddyerburgh/vue-test-utils-tape-example)
+- [Example project with AVA](https://github.com/eddyerburgh/vue-test-utils-ava-example)
+- [tyu - Délicieux test web par egoist](https://github.com/egoist/tyu)

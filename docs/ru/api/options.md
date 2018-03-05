@@ -2,8 +2,6 @@
 
 Опции для `mount` и `shallow`. Объект опций может содержать как настройки монтирования `vue-test-utils`, так и сырые опции Vue.
 
-Опции Vue передаются в компонент при создании нового экземпляра, например `store`, `propsData`. Полный список можно изучить в [документации API Vue](https://ru.vuejs.org/v2/api/).
-
 ## Специальные опции монтирования `vue-test-utils`
 
 - [`context`](#context)
@@ -14,7 +12,6 @@
 - [`attachToDocument`](#attachtodocument)
 - [`attrs`](#attrs)
 - [`listeners`](#listeners)
-- [`clone`](#clone)
 - [`provide`](#provide)
 
 ### `context`
@@ -26,9 +23,13 @@
 Пример:
 
 ```js
+import Foo from './Foo.vue'
+import Bar from './Bar.vue'
+
 const wrapper = mount(Component, {
   context: {
-    props: { show: true }
+    props: { show: true },
+    children: [Foo, Bar]
   }
 })
 
@@ -39,12 +40,11 @@ expect(wrapper.is(Component)).toBe(true)
 
 - Тип: `{ [name: string]: Array<Component>|Component|string }`
 
-Предоставляет объект с содержимым слотов компоненту. Ключ соответствует имени слота. Значение может быть компонентом, массивом компонентов или строковым шаблоном.
+Предоставляет объект с содержимым слотов компоненту. Ключ соответствует имени слота. Значение может быть компонентом, массивом компонентов или строковым шаблоном, или текстом.
 
 Пример:
 
 ```js
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 
@@ -52,11 +52,20 @@ const wrapper = shallow(Component, {
   slots: {
     default: [Foo, Bar],
     fooBar: Foo, // будет соответствовать `<slot name="FooBar" />`
-    foo: '<div />'
+    foo: '<div />',
+    bar: 'bar'
   }
 })
 expect(wrapper.find('div')).toBe(true)
 ```
+
+#### Передача текста
+
+Вы можете передать текст в `slots`.
+Для этого есть одно ограничение.
+
+Это не поддерживается PhantomJS.
+Используйте [Puppeteer](https://github.com/karma-runner/karma-chrome-launcher#headless-chromium-with-puppeteer).
 
 ### `stubs`
 
@@ -92,8 +101,6 @@ shallow(Component, {
 Пример:
 
 ```js
-import { expect } from 'chai'
-
 const $route = { path: 'http://www.example-path.com' }
 const wrapper = shallow(Component, {
   mocks: {
@@ -112,9 +119,8 @@ expect(wrapper.vm.$route.path).toBe($route.path)
 Пример:
 
 ```js
-import { createLocalVue, mount } from 'vue-test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 
 const localVue = createLocalVue()
@@ -154,15 +160,38 @@ expect(wrapper.vm.$route).toBeInstanceOf(Object)
 
 Устанавливает объект `$listeners` на экземпляре компонента.
 
-### `clone`
-
-- Тип: `boolean`
-- По умолчанию: `true`
-
-Клонирует компонент перед монтированием, если установлено в `true`, что позволяет избежать мутаций оригинального определения компонента.
-
 ### `provide`
 
 - Тип: `Object`
 
-Передаёт свойства в компоненты для использования в инъекциях. См. [provide/inject](https://ru.vuejs.org/v2/api/#provide-inject)
+Передаёт свойства в компоненты для использования в инъекциях. См. [provide/inject](https://ru.vuejs.org/v2/api/#provide-inject).
+
+## Другие опции
+
+Если в параметрах для `mount` и `shallow` содержатся другие опции, отличные от опций монтирования, опции компонента будут перезаписаны с помощью [extends](https://ru.vuejs.org/v2/api/#extends).
+
+```js
+const Component = {
+  template: '<div>{{ foo() }}{{ bar() }}{{ baz() }}</div>',
+  methods: {
+    foo () {
+      return 'a'
+    },
+    bar () {
+      return 'b'
+    }
+  }
+}
+const options = {
+  methods: {
+    bar () {
+      return 'B'
+    },
+    baz () {
+      return 'C'
+    }
+  }
+}
+const wrapper = mount(Component, options)
+expect(wrapper.text()).toBe('aBC')
+```

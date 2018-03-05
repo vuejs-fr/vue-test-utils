@@ -7,15 +7,20 @@
 これを回避するために、localeVue を作成し、その上に Vue Router をインストールすることができます。
 
 ```js
+import { shallow, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-const localVue = createLocalVue()
 
+const localVue = createLocalVue()
 localVue.use(VueRouter)
+const router = new VueRouter()
 
 shallow(Component, {
-  localVue
+  localVue,
+  router
 })
 ```
+
+> Vue Router を localVue にインストールすると `$route` と `$router` が読み取り専用プロパティーとして localVue に追加されます。これは VueRouter をインストールした localVue を使用しているコンポーネントをマウントする時、 `mock` オプションで `$route` と `$router` を上書きすることができないことを意味します。
 
 ## `router-link` または `router-view` を使用するコンポーネントテスト
 
@@ -26,6 +31,8 @@ Vue Router をインストールする時、`router-link` と `router-view` コ�
 ### スタブを使用する
 
 ```js
+import { shallow } from '@vue/test-utils'
+
 shallow(Component, {
   stubs: ['router-link', 'router-view']
 })
@@ -34,9 +41,10 @@ shallow(Component, {
 ### localVue による Vue Router のインストール
 
 ```js
+import { shallow, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-const localVue = createLocalVue()
 
+const localVue = createLocalVue()
 localVue.use(VueRouter)
 
 shallow(Component, {
@@ -49,6 +57,8 @@ shallow(Component, {
 時々、コンポーネントが `$route` と `$router` オブジェクトから引数によって何かをするテストをしたいときがあります。これをするためには、Vue インスタンスにカスタムモックを渡すことができます。
 
 ```js
+import { shallow } from '@vue/test-utils'
+
 const $route = {
   path: '/some/path'
 }
@@ -59,7 +69,7 @@ const wrapper = shallow(Component, {
   }
 })
 
-wrapper.vm.$router // /some/path
+wrapper.vm.$route.path // /some/path
 ```
 
 ## よくある落とし穴
@@ -68,4 +78,5 @@ Vue Router をインストールすると Vue のプロトタイプに読み取�
 
 これは、`$route` または `$router` をモックを試みるテストが将来失敗することを意味します。
 
-これを回避するために、テストを実行するときに、Vue Router をインストールしないでください。
+これを回避するために、テストを実行するときに、Vue Router をグローバルにインストールしないでください。  
+上記のように localVue を使用してください。

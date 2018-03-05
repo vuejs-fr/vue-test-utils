@@ -18,10 +18,10 @@ Dans des tests unitaires, on souhaite s'intéresser au composant qui est en trai
 
 De plus, pour les composants qui contiennent beaucoup de composants enfants, l'intégralité de l'arbre de rendu peut être énorme. Répétitivement rendre tous les composants pourrait réduire la vitesse de nos tests.
 
-`vue-test-utils` vous permets de monter un composant sans avoir à rendre ses composants enfants (en les ignorants) avec la méthode `shallow` :
+Vue Test Utils vous permets de monter un composant sans avoir à rendre ses composants enfants (en les ignorants) avec la méthode `shallow` :
 
 ```js
-import { shallow } from 'vue-test-utils'
+import { shallow } from '@vue/test-utils'
 
 const wrapper = shallow(Component) // retourne un wrapper contenant une instance de composant montée
 wrapper.vm // l'instance de Vue montée
@@ -45,8 +45,6 @@ wrapper.vm.$emit('foo', 123)
 
 Vous pouvez ensuite réaliser des assertions sur ces données :
 ``` js
-import { expect } from 'chai'
-
 // asserte que l'évènement est bien émit
 expect(wrapper.emitted().foo).toBeTruthy()
 
@@ -74,7 +72,7 @@ wrapper.setProps({ foo: 'bar' })
 Vous pouvez passer des props au composant en utilisant l'option `propsData` de Vue :
 
 ```js
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 mount(Component, {
   propsData: {
@@ -94,7 +92,7 @@ Des composants pourraient se fier à des fonctionnalités injectées par un plug
 Si vous écrivez des tests pour des composants dans une application spécifique, vous pouvez mettre en place les mêmes plugins globaux et mixins en une seule fois dans vos tests. Dans certains cas, comme tester un composant générique utilisé par des applications différentes, il est favorable de tester ces composants dans une installation plus isolée, sans avoir à polluer le constructeur global `Vue`. On peut utiliser la méthode [`createLocalVue`](../api/createLocalVue.md) pour faire cela :
 
 ``` js
-import { createLocalVue } from 'vue-test-utils'
+import { createLocalVue } from '@vue/test-utils'
 
 // créer un constructeur local de `Vue`
 const localVue = createLocalVue()
@@ -108,12 +106,14 @@ mount(Component, {
 })
 ```
 
+**Notez que divers plugins, comme Vue Router, ajoute une propriété en lecture seule au constructeur global de Vue. Ceci rend donc impossible la réinstallation du plugin sur un constructeur `localVue`, ou ajoutez des simulations pour ces propriétés en lectures seules.**
+
 ## Simuler des injections
 
 Une stratégie alternative pour injecter des propriétés est de simplement les simuler. Vous pouvez faire cela avec l'option `mocks` :
 
 ```js
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 const $route = {
   path: '/',
@@ -131,4 +131,8 @@ mount(Component, {
 
 ## Gérer le routage
 
-Depuis que le routage, par définition, porte sur la structure générale de l'application et implique plusieurs composants. Il est mieux testé via des tests d'intégration ou point à point (end-to-end). Pour des composants individuels qui se fie aux fonctionnalités de `vue-router`, vous pouvez les simuler en utilisant les techniques mentionnées plus haut.
+Depuis que le routage, par définition, porte sur la structure générale de l'application et implique plusieurs composants. Il est mieux testé via des tests d'intégration ou point à point (« end-to-end »). Pour des composants individuels qui se fie aux fonctionnalités de `vue-router`, vous pouvez les simuler en utilisant les techniques mentionnées plus haut.
+
+## Détection des styles
+
+Vos tests peuvent seulement détecter des styles dans l'attribut `style` des balises quand ils sont lancés avec `jsdom`.

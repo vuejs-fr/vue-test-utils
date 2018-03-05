@@ -7,8 +7,7 @@ If called on a `Wrapper` containing a `vm`, it will force the `Wrapper` `vm` to 
 - **Example:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

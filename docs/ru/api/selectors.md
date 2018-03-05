@@ -23,8 +23,6 @@
 
 Компоненты Vue также являются допустимыми селекторами.
 
-`vue-test-utils` использует свойство `name` для поиска экземпляра в дереве компонентов, соответствующих компоненту Vue.
-
 ```js
 // Foo.vue
 
@@ -34,8 +32,7 @@ export default {
 ```
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = shallow(Foo)
@@ -43,6 +40,15 @@ expect(wrapper.is(Foo)).toBe(true)
 ```
 
 ## Опция поиска объекта
+
+### Name
+
+Использование объекта для опции поиска, позволяет `vue-test-utils` выбирать элементы по `name` компонента на компонентах обёртках.
+
+```js
+const buttonWrapper = wrapper.find({ name: 'my-button' })
+buttonWrapper.trigger('click')
+```
 
 ### Ref
 

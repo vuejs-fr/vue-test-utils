@@ -11,13 +11,12 @@
 
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)
 wrapper.setProps({ foo: 'bar' })
-expect(wrapper.vm.foo).to.equal('bar')
+expect(wrapper.vm.foo).toBe('bar')
 ```
 
 渡された値で Vue インスタンス を初期化する `propsData` オブジェクトを渡すことができます。
@@ -35,8 +34,7 @@ export default {
 ```
 
 ``` js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo, {
@@ -45,5 +43,5 @@ const wrapper = mount(Foo, {
   }
 })
 
-expect(wrapper.vm.foo).to.equal('bar')
+expect(wrapper.vm.foo).toBe('bar')
 ```

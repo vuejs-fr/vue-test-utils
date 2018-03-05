@@ -13,8 +13,7 @@ Retorna `true` se o wrapper contém o atributo.
 - **Exemplo:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 // Exemplo <div class="foo">...</div>
@@ -27,8 +26,7 @@ expect(wrapper.hasAttribute('id', 'foo')).toBe(true)
 Você poderia obter o atributo do `Wrapper.element` para então verificar baseado no valor retornado:
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = mount(Foo)

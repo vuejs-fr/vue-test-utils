@@ -23,12 +23,12 @@ wrapper.find('button').trigger('click')
 
 La méthode `trigger` prend en paramètre optionnel l'objet `options`. Les propriétés de l'objet `options` sont ajoutées à l'évènement.
 
-Vous pouvez utiliser `preventDefault` sur l'évènement en passant `preventDefault: true` dans le paramètre `options`.
+Notez que cette cible peut être ajoutée dans l'objet `options`.
 
 ```js
 const wrapper = mount(MyButton)
 
-wrapper.trigger('click', { preventDefault: true })
+wrapper.trigger('click', { button: 0 })
 ```
 
 
@@ -68,7 +68,7 @@ export default {
 
 ```js
 import YesNoComponent from '@/components/YesNoComponent'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
 
 describe('Évènement click', () => {
@@ -147,32 +147,32 @@ export default {
 
 ```js
 import QuantityComponent from '@/components/QuantityComponent'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 describe('Tests événement clavier', () => {
   it('La quantité est zéro par défaut', () => {
     const wrapper = mount(QuantityComponent)
-    expect(wrapper.vm.quantity).to.equal(0)
+    expect(wrapper.vm.quantity).toBe(0)
   })
 
   it('La flèche du haut positionne la quantité à 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.trigger('keydown.up')
-    expect(wrapper.vm.quantity).to.equal(1)
+    expect(wrapper.vm.quantity).toBe(1)
   })
 
   it('La flèche du bas réduit la quantité de 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.down')
-    expect(wrapper.vm.quantity).to.equal(4)
+    expect(wrapper.vm.quantity).toBe(4)
   })
 
   it('La touche Échap positionne la quantité à 0', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.esc')
-    expect(wrapper.vm.quantity).to.equal(0)
+    expect(wrapper.vm.quantity).toBe(0)
   })
 
   it('Le caractère magique `a` positionne la quantité à 13', () => {
@@ -180,7 +180,7 @@ describe('Tests événement clavier', () => {
     wrapper.trigger('keydown', {
       which: 65
     })
-    expect(wrapper.vm.quantity).to.equal(13)
+    expect(wrapper.vm.quantity).toBe(13)
   })
 })
 
@@ -190,8 +190,24 @@ describe('Tests événement clavier', () => {
 
 Un nom de touche après le point `keydown.up` est traduit vers un `keyCode`. Cela est supporté pour les noms suivant :
 
-* `enter`, `tab`, `delete`, `esc`, `space`, `up`, `down`, `left`, `right`
+| key name | key code |
+| --- | --- |
+| enter | 13 |
+| esc | 27 |
+| tab | 9 |
+| space | 32 |
+| delete | 46 |
+| backspace | 8 |
+| insert | 45 |
+| up | 38 |
+| down | 40 |
+| left | 37 |
+| right | 39 |
+| end | 35 |
+| home | 36 |
+| pageup | 33 |
+| pagedown | 34 |
 
 ## Important
 
-`vue-test-utils` déclenche les évènements de façon synchrone. Par conséquent, `vue.nextTick` n'est pas requis.
+Vue Test Utils déclenche les évènements de façon synchrone. Par conséquent, `vue.nextTick` n'est pas requis.

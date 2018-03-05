@@ -13,8 +13,8 @@ Vue options are passed to the component when a new instance is created. , e.g. `
 - [`localVue`](#localvue)
 - [`attachToDocument`](#attachtodocument)
 - [`attrs`](#attrs)
+- [`provide`](#provide)
 - [`listeners`](#listeners)
-- [`clone`](#clone)
 
 ### `context`
 
@@ -43,7 +43,6 @@ Provide an object of slot contents to the component. The key corresponds to the 
 Example:
 
 ```js
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 
@@ -61,7 +60,7 @@ expect(wrapper.find('div')).toBe(true)
 
 - type: `{ [name: string]: Component | boolean } | Array<string>`
 
-Stubs child components. Can be an Array of component names to stub, or an object.
+Stubs child components. Can be an Array of component names to stub, or an object. If `stubs` is an Array, every stub is `<!---->`.
 
 Example:
 
@@ -91,8 +90,6 @@ Add additional properties to the instance. Useful for mocking global injections.
 Example:
 
 ```js
-import { expect } from 'chai'
-
 const $route = { path: 'http://www.example-path.com' }
 const wrapper = shallow(Component, {
   mocks: {
@@ -111,9 +108,8 @@ A local copy of Vue created by [`createLocalVue`](./createLocalVue.md) to use wh
 Example:
 
 ```js
-import { createLocalVue, mount } from 'vue-test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import { expect } from 'chai'
 import Foo from './Foo.vue'
 
 const localVue = createLocalVue()
@@ -153,13 +149,8 @@ Set the component instance's `$attrs` object.
 
 Set the component instance's `$listeners` object.
 
-### `clone`
+### `provide`
 
-- type: `boolean`
-- default: `true`
+- type: `Object`
 
-Clones component before mounting if `true`, which avoids mutating the original component definition.
-
-`options.mocks` (`Object`): Add globals to Vue instance.
-
-`options.localVue` (`Object`): `Vue` class to use in `mount`. See [`createLocalVue`](createLocalVue.md).
+Pass properties for components to use in injection. See [provide/inject](https://vuejs.org/v2/api/#provide-inject).

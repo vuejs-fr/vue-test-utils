@@ -12,6 +12,7 @@ node_modules/
 *.log
 reports
 coverage
+.nyc_output/
 
 # Build
 dist
@@ -21,4 +22,7 @@ _book
 .tmp
 tmp*
 
-yarn.lock
+# Vim
+*.sw[po]
+
+package-lock.json

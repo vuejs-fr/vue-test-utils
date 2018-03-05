@@ -23,8 +23,6 @@ You can also use combinators:
 
 Vue components are also valid selectors.
 
-`vue-test-utils` uses the `name` property to search the instance tree for matching Vue components.
-
 ```js
 // Foo.vue
 
@@ -34,8 +32,7 @@ export default {
 ```
 
 ```js
-import { shallow } from 'vue-test-utils'
-import { expect } from 'chai'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo.vue'
 
 const wrapper = shallow(Foo)
@@ -44,9 +41,18 @@ expect(wrapper.is(Foo)).toBe(true)
 
 ## Find Option Object
 
+### Name
+
+Using a find option object, Vue Test Utils allows for selecting elements by a `name` of component on wrapper components.
+
+```js
+const buttonWrapper = wrapper.find({ name: 'my-button' })
+buttonWrapper.trigger('click')
+```
+
 ### Ref
 
-Using a find option object, `vue-test-utils` allows for selecting elements by `$ref` on wrapper components.
+Using a find option object, Vue Test Utils allows for selecting elements by `$ref` on wrapper components.
 
 ```js
 const buttonWrapper = wrapper.find({ ref: 'myButton' })

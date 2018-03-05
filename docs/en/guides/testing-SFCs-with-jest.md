@@ -8,10 +8,10 @@ Jest est un lanceur de tests développé par Facebook. Il a pour but de procurer
 
 On va supposer que vous commencez avec une installation qui a déjà webpack, vue-loader et Babel correctement configurés (ex. le template `webpack-simple` via `vue-cli`).
 
-La première chose à faire est d'installer Jest et `vue-test-utils` :
+La première chose à faire est d'installer Jest et Vue Test Utils :
 
 ```bash
-$ npm install --save-dev jest vue-test-utils
+$ npm install --save-dev jest @vue/test-utils
 ```
 
 Ensuite, on doit définir un script dans notre `package.json`.
@@ -27,7 +27,7 @@ Ensuite, on doit définir un script dans notre `package.json`.
 
 ## Traiter les composants monofichiers dans Jest
 
-Pour indiquer à Jest comment traiter les fichiers `*.vue`, on va avoir besoin d'installer et de configurer le préprocesseur `vue-jest` : 
+Pour indiquer à Jest comment traiter les fichiers `*.vue`, on va avoir besoin d'installer et de configurer le préprocesseur `vue-jest` :
 
 ``` bash
 npm install --save-dev vue-jest
@@ -124,7 +124,7 @@ Exemple `.babelrc`:
 }
 ```
 
-### Test d'instantanés
+## Test d'instantanés
 
 Vous pouvez utiliser [`vue-server-renderer`](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer) pour transformer un composant en une chaine de caractères afin de le sauvegarder dans un instantané pour [Jest tests d'instantanés](https://facebook.github.io/jest/docs/en/snapshot-testing.html).
 
@@ -149,18 +149,51 @@ Puis configurez-le dans `package.json`:
 }
 ```
 
-### Placer les fichiers de tests
+## Placer les fichiers de tests
 
 Par défaut, Jest va récursivement récupérer tous les fichiers qui ont une extension en `.spec.js` ou `.test.js` dans le projet. Si cela ne correspond pas à vos besoins, il est possible [de changer l'expression régulière `testRegex`](https://facebook.github.io/jest/docs/en/configuration.html#testregex-string) dans la configuration se trouvant dans `package.json`.
 
 Jest recommande de créer un répertoire `__tests__` au même niveau que le code testé, mais soyez libre de structurer vos tests selon vos besoins. Soyez juste au courant que Jest créera un répertoire `__snapshots__` au même niveau que les fichiers de tests qui travaillent sur des instantanés.
 
-### Exemple d'une spécification
+## Coverage (EN)
+
+Jest can be used to generate coverage reports in multiple formats. The following is a simple example to get started with:
+
+Extend your `jest` config (usually in `package.json` or `jest.config.js`) with the [`collectCoverage`](https://facebook.github.io/jest/docs/en/configuration.html#collectcoverage-boolean) option, and then add the [`collectCoverageFrom`](https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array) array to define the files for which coverage information should be collected. You'll also want [`mapCoverage`](https://facebook.github.io/jest/docs/en/configuration.html#mapcoverage-boolean) to be `true`, for coverage data to be accurate.
+
+```json
+{
+  "jest": {
+    // ...
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,vue}",
+      "!**/node_modules/**"
+    ],
+    "mapCoverage": true
+  }
+}
+```
+
+This will enable coverage reports with the [default coverage reporters](https://facebook.github.io/jest/docs/en/configuration.html#coveragereporters-array-string). You can customise these with the `coverageReporters` option:
+
+```json
+{
+  "jest": {
+    // ...
+    "coverageReporters": ["html", "text-summary"]
+  }
+}
+```
+
+Further documentation can be found in the [Jest configuration documentation](https://facebook.github.io/jest/docs/en/configuration.html#collectcoverage-boolean), where you can find options for coverage thresholds, target output directories, etc.
+
+## Exemple d'une spécification
 
 Si vous êtes habitué à Jasmine, vous devriez très bien vous en sortir avec [l'API d'assertions de Jest](https://facebook.github.io/jest/docs/en/expect.html#content) :
 
 ```js
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import Component from './component'
 
 describe('Component', () => {
@@ -171,7 +204,7 @@ describe('Component', () => {
 })
 ```
 
-### Ressources
+## Ressources
 
 - [Projet exemple pour cette installation](https://github.com/vuejs/vue-test-utils-jest-example)
 - [Exemples et diapositives depuis la Vue Conf 2017](https://github.com/codebryo/vue-testing-with-jest-conf17)

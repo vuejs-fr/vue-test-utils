@@ -18,10 +18,10 @@
 
 额外的，对于包含许多子组件的组件来说，整个渲染树可能会非常大。重复渲染所有的子组件可能会让我们的测试变慢。
 
-`vue-test-utils` 允许你通过 `shallow` 方法只挂载一个组件而不渲染其子组件 (即保留它们的存根)：
+Vue Test Utils 允许你通过 `shallow` 方法只挂载一个组件而不渲染其子组件 (即保留它们的存根)：
 
 ```js
-import { shallow } from 'vue-test-utils'
+import { shallow } from '@vue/test-utils'
 
 const wrapper = shallow(Component) // 返回一个包裹器，包含一个挂载的组件实例
 wrapper.vm // 挂载的 Vue 实例
@@ -46,8 +46,6 @@ wrapper.vm.$emit('foo', 123)
 然后你可以基于这些数据来设置断言：
 
 ``` js
-import { expect } from 'chai'
-
 // 断言事件已经被触发
 expect(wrapper.emitted().foo).toBeTruthy()
 
@@ -75,7 +73,7 @@ wrapper.setProps({ foo: 'bar' })
 你可以使用 Vue 在内置 `propsData` 选项向组件传入 prop：
 
 ```js
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 mount(Component, {
   propsData: {
@@ -95,7 +93,7 @@ mount(Component, {
 如果你在为一个特定的应用撰写组件，你可以在你的测试入口处一次性设置相同的全局插件和混入。但是有些情况下，比如测试一个可能会跨越不同应用共享的普通的组件套件的时候，最好还是在一个更加隔离的设置中测试你的组件，不对全局的 `Vue` 构造函数注入任何东西。我们可以使用 [`createLocalVue`](../api/createLocalVue.md) 方法来存档它们：
 
 ``` js
-import { createLocalVue } from 'vue-test-utils'
+import { createLocalVue } from '@vue/test-utils'
 
 // 创建一个扩展的 `Vue` 构造函数
 const localVue = createLocalVue()
@@ -109,12 +107,14 @@ mount(Component, {
 })
 ```
 
+**注意有些插件会为全局的 Vue 构造函数添加只读属性，比如 Vue Router。这使得我们无法在一个 `localVue` 构造函数上二次安装该插件，或伪造这些只读属性。**
+
 ## 仿造注入
 
 另一个注入 prop 的策略就是简单的仿造它们。你可以使用 `mocks` 选项：
 
 ```js
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 const $route = {
   path: '/',
@@ -133,3 +133,7 @@ mount(Component, {
 ## 处理路由
 
 因为路由需要在应用的全局结构中进行定义，且引入了很多组件，所以最好集成到 end-to-end 测试。对于依赖 `vue-router` 功能的独立的组件来说，你可以使用上面提到的技术仿造它们。
+
+## 探测样式
+
+当你的测试运行在 `jsdom` 中时，可以只探测到内联样式。

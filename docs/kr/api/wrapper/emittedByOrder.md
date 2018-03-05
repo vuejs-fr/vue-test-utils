@@ -7,8 +7,7 @@
 - **예제:**
 
 ```js
-import { mount } from 'vue-test-utils'
-import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 
 const wrapper = mount(Component)
 

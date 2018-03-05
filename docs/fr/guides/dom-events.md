@@ -11,7 +11,7 @@ const wrapper = mount(MyButton)
 wrapper.trigger('click')
 ```
 
-Vous devez être au courant que la méthode `find` retourne aussi un wrapper. En partant du principe que `MyComponent` contient un bouton, le code suivant clique sur le bouton.
+Vous devez être au courant que la méthode `find` retourne aussi un `Wrapper`. En partant du principe que `MyComponent` contient un bouton, le code suivant clique sur le bouton.
 
 ```js
 const wrapper = mount(MyComponent)
@@ -23,12 +23,10 @@ wrapper.find('button').trigger('click')
 
 La méthode `trigger` prend en paramètre optionnel l'objet `options`. Les propriétés de l'objet `options` sont ajoutées à l'évènement.
 
-Vous pouvez utiliser `preventDefault` sur l'évènement en passant `preventDefault: true` dans le paramètre `options`.
-
 ```js
 const wrapper = mount(MyButton)
 
-wrapper.trigger('click', { preventDefault: true })
+wrapper.trigger('click', { button: 0 })
 ```
 
 
@@ -68,11 +66,11 @@ export default {
 
 ```js
 import YesNoComponent from '@/components/YesNoComponent'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
 
 describe('Évènement click', () => {
-  it('Cliquer sur le bouton oui appelle notre méthode avec l\'argument "oui"', () => {
+  it("Cliquer sur le bouton oui appelle notre méthode avec l'argument « oui »", () => {
     const spy = sinon.spy()
     const wrapper = mount(YesNoComponent, {
       propsData: {
@@ -147,40 +145,40 @@ export default {
 
 ```js
 import QuantityComponent from '@/components/QuantityComponent'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 
 describe('Tests événement clavier', () => {
   it('La quantité est zéro par défaut', () => {
     const wrapper = mount(QuantityComponent)
-    expect(wrapper.vm.quantity).to.equal(0)
+    expect(wrapper.vm.quantity).toBe(0)
   })
 
   it('La flèche du haut positionne la quantité à 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.trigger('keydown.up')
-    expect(wrapper.vm.quantity).to.equal(1)
+    expect(wrapper.vm.quantity).toBe(1)
   })
 
   it('La flèche du bas réduit la quantité de 1', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.down')
-    expect(wrapper.vm.quantity).to.equal(4)
+    expect(wrapper.vm.quantity).toBe(4)
   })
 
   it('La touche Échap positionne la quantité à 0', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.vm.quantity = 5
     wrapper.trigger('keydown.esc')
-    expect(wrapper.vm.quantity).to.equal(0)
+    expect(wrapper.vm.quantity).toBe(0)
   })
 
-  it('Le caractère magique "a" positionne la quantité à 13', () => {
+  it('Le caractère magique `a` positionne la quantité à 13', () => {
     const wrapper = mount(QuantityComponent)
     wrapper.trigger('keydown', {
       which: 65
     })
-    expect(wrapper.vm.quantity).to.equal(13)
+    expect(wrapper.vm.quantity).toBe(13)
   })
 })
 
